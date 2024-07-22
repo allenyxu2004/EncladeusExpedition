@@ -43,4 +43,6 @@ public class FlyingEnemyBehavior : MonoBehaviour
         transform.position =
             Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
     }
+
+
 }

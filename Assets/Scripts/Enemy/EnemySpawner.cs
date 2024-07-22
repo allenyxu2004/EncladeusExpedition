@@ -30,9 +30,9 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 enemyPosition;
 
-        enemyPosition.x = Random.Range(xMin, xMax);
-        enemyPosition.y = Random.Range(yMin, yMax);
-        enemyPosition.z = Random.Range(zMin, zMax);
+        enemyPosition.x = gameObject.transform.position.x + Random.Range(xMin, xMax);
+        enemyPosition.y = gameObject.transform.position.y + Random.Range(yMin, yMax);
+        enemyPosition.z = gameObject.transform.position.z + Random.Range(zMin, zMax);
 
         GameObject spawnedEnemy = Instantiate(enemyPrefab, enemyPosition, transform.rotation)
             as GameObject;

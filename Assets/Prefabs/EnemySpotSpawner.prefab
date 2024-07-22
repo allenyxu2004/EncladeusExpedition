@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3337092494976402848}
   - component: {fileID: 7695053944362984388}
+  - component: {fileID: 905987901352679834}
   m_Layer: 0
   m_Name: EnemySpotSpawner
   m_TagString: Untagged
@@ -52,3 +53,24 @@ MonoBehaviour:
   yMax: 1
   zMin: 1
   zMax: 1
+--- !u!65 &905987901352679834
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908972476242422819}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

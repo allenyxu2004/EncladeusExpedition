@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8921282650342162149}
   - component: {fileID: 7010876436397558375}
+  - component: {fileID: 6529490368599755923}
   m_Layer: 0
   m_Name: EnemyAreaSpawner
   m_TagString: Untagged
@@ -52,3 +53,24 @@ MonoBehaviour:
   yMax: 5
   zMin: -25
   zMax: 25
+--- !u!65 &6529490368599755923
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3858702514785468232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
