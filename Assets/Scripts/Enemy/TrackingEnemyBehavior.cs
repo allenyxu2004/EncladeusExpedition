@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class FlyingEnemyBehavior : MonoBehaviour
 {
+    public GameObject target;
     public float moveSpeed = 5f;
     public float detectionRadius = Mathf.Infinity;
 
-    Transform player;
     Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null)
+        if (target == null)
         {
-            player = GameObject.FindWithTag("Player").transform;
+            target = GameObject.FindWithTag("Player");
         }
 
         rb = GetComponent<Rigidbody>();
@@ -24,7 +24,7 @@ public class FlyingEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(player.position, transform.position) < detectionRadius)
+        if (Vector3.Distance(target.transform.position, transform.position) < detectionRadius)
         {
             RotateEnemy();
             FollowPlayer();
@@ -33,7 +33,7 @@ public class FlyingEnemyBehavior : MonoBehaviour
 
     void RotateEnemy()
     {
-        transform.LookAt(player);
+        transform.LookAt(target.transform);
     }
 
     void FollowPlayer()
@@ -41,6 +41,6 @@ public class FlyingEnemyBehavior : MonoBehaviour
         // move toward the player smoothly
         // moveSpeed should be adjustable through the inspector
         transform.position =
-            Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
     }
 }

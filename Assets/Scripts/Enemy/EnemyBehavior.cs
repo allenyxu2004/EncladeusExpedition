@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    public GameObject target;
     public float moveSpeed = 5f;
     public float detectionRadius = Mathf.Infinity;
     public AudioClip enemySFX;
 
-    Transform player;
     Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null)
+        if (target == null)
         {
-            player = GameObject.FindWithTag("Player").transform;
+            target = GameObject.FindWithTag("Player");
         }
 
         rb = GetComponent<Rigidbody>();
@@ -25,9 +25,9 @@ public class EnemyBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(player.position, transform.position) < detectionRadius)
+        if (Vector3.Distance(target.transform.position, transform.position) < detectionRadius)
         {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
+            Vector3 direction = (target.transform.position - transform.position).normalized;
             rb.AddForce(direction * moveSpeed, ForceMode.Force);
         }
 
