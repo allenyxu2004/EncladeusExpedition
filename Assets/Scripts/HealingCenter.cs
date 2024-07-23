@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHit : MonoBehaviour
+public class HealingCenter : MonoBehaviour
 {
-    public int atkDamage = 10;
+    public int healEffect = 10;
     public float delayDuration = 1;
     float delayCount = 0;
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -23,10 +23,11 @@ public class EnemyHit : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // not currently working :(
         if (collision.gameObject.CompareTag("Player") && delayCount <= 0)
         {
             var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(atkDamage);
+            playerHealth.HealPlayer(healEffect);
             delayCount = delayDuration;
         }
     }
