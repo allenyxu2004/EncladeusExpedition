@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
 
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
+    public AudioSource hitSFX;
 
     public static bool isGameOver = false;
 
@@ -31,6 +32,11 @@ public class LevelManager : MonoBehaviour
         UpdateTimer();
         player = GameObject.FindWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+    }
+
+    public void hurtSound()
+    {
+        hitSFX.Play();
     }
 
     void Update()
