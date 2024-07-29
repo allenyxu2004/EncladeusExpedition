@@ -20,20 +20,29 @@ public class LevelManager : MonoBehaviour
 
     public static float countDown = 0.0f;
 
+    private GameObject player;
+    private PlayerHealth playerHealth;
+
+
     void Start()
     {
         isGameOver = false;
         countDown = levelDuration;
         UpdateTimer();
+        player = GameObject.FindWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
         if (!isGameOver)
         {
-            if (countDown > 0)
+            if (countDown > 0 )
             {
-                countDown -= Time.deltaTime;
+                if (playerHealth.ShipHasEnergy())
+                {
+                    countDown -= Time.deltaTime;
+                }
             }
             else
             {

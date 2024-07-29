@@ -5,25 +5,30 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
+    public float startingHealth = 100;
+    public float startingEnergy = 100;
+    public float energyUsedPerSecond = 1.5f;
     public AudioClip deadSFX;
     public Slider healthSlider;
+    public Slider energySlider;
     public LevelManager levelManager;
-
-    int currentHealth;
+    float currentHealth;
+    float currentEnergy;
 
     void Start()
     {
         currentHealth = startingHealth;
+        currentEnergy = startingEnergy;
         healthSlider.value = currentHealth;
     }
 
     void Update()
     {
-
+        currentEnergy -= energyUsedPerSecond * Time.deltaTime;
+        energySlider.value = currentEnergy / startingEnergy;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         if (currentHealth > 0)
         {
@@ -39,14 +44,21 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Current Health: " + currentHealth);
     }
 
-    public void HealPlayer(int healAmount)
+    public void HealPlayer(float healAmount)
     {
-        if (currentHealth < 100)
+        if (currentHealth < 100 && currentEnergy > 0)
         {
             currentHealth += healAmount;
+            currentEnergy -= healAmount;
             Mathf.Clamp(currentHealth, 0, 100);
+            Mathf.Clamp(currentEnergy, 0, 100);
             healthSlider.value = currentHealth / startingHealth;
         }
+    }
+
+    public bool ShipHasEnergy()
+    {
+        return currentEnergy > 0;
     }
 
     void PlayerDies()

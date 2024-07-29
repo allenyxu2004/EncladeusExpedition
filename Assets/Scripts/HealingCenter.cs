@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class HealingCenter : MonoBehaviour
 {
-    public int healEffect = 10;
-    public float delayDuration = 1;
-    float delayCount = 0;
+    public float healEffect = 10.0f;
 
     void Start()
     {
@@ -15,20 +13,16 @@ public class HealingCenter : MonoBehaviour
 
     void Update()
     {
-        if (delayCount > 0)
-        {
-            delayCount -= Time.deltaTime;
-        }
+    
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        // not currently working :(
-        if (collision.gameObject.CompareTag("Player") && delayCount <= 0)
+        if (other.gameObject.CompareTag("Player"))
         {
-            var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.HealPlayer(healEffect);
-            delayCount = delayDuration;
+            Debug.Log("Healing...");
+            var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            playerHealth.HealPlayer(healEffect * Time.deltaTime);
         }
-    }
+    }   
 }
