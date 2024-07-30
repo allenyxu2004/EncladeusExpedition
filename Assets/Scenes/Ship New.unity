@@ -14518,11 +14518,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 5582139627372773370, guid: bcccf7c522340f24c8cde81235ae3602, type: 3}
   projectileSpeed: 100
+  projectileSFX: {fileID: 8300000, guid: 41d872fcc68a7eb459987f5290053027, type: 3}
   reticleImage: {fileID: 748409551}
   meleeRange: 2
   targetColor: {r: 1, g: 0, b: 0, a: 1}
-  projectileSFX: {fileID: 8300000, guid: 41d872fcc68a7eb459987f5290053027, type: 3}
-  meleeSFX: {fileID: 8300000, guid: 941dad63860cd6143ba21caf0e1706a7, type: 3}
 --- !u!1 &1073007914
 GameObject:
   m_ObjectHideFlags: 0
@@ -17349,7 +17348,6 @@ MonoBehaviour:
   jumpHeight: 1.5
   gravity: 15
   airControl: 2
-  jumpSFX: {fileID: 8300000, guid: f54f0e2c373b17c429a3744ba017c1b9, type: 3}
 --- !u!143 &1305258027
 CharacterController:
   m_ObjectHideFlags: 0
@@ -25246,7 +25244,7 @@ PrefabInstance:
     - target: {fileID: 7695053944362984388, guid: bbed233c6a18e89498c161daf0794480, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 6845561030253726755, guid: 3a86c9c0b18110d49b6793f7c3e2e3f5, type: 3}
+      objectReference: {fileID: 6945747324375161685, guid: 14dfbf0f43e8020499a9fa76eddf5506, type: 3}
     - target: {fileID: 8908972476242422819, guid: bbed233c6a18e89498c161daf0794480, type: 3}
       propertyPath: m_Name
       value: EnemySpotSpawner (1)
@@ -25281,7 +25279,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

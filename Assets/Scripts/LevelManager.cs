@@ -82,6 +82,8 @@ public class LevelManager : MonoBehaviour
                 AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
             }
 
+            clearLoot();
+
             Invoke("LoadCurrentLevel", 2);
         }
     }
@@ -98,6 +100,8 @@ public class LevelManager : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
             }
+
+            clearLoot();
 
             if (!string.IsNullOrEmpty(nextLevel))
             {
@@ -118,5 +122,14 @@ public class LevelManager : MonoBehaviour
     void LoadCurrentLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void clearLoot()
+    {
+        GameObject[] droppedLoot = GameObject.FindGameObjectsWithTag("DroppedLoot");
+        for (int i = 0; i < droppedLoot.Length; i++)
+        {
+            Destroy(droppedLoot[i]);
+        }
     }
 }

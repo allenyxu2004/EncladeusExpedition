@@ -205,6 +205,8 @@ public class EnemyNavAi : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!this.gameObject.scene.isLoaded) return;
+
         Instantiate(lootPrefab, deadTransform.position, deadTransform.rotation);
         Instantiate(deadVFX, deadTransform.position, deadTransform.rotation);
     }
