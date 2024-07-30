@@ -7,11 +7,10 @@ public class EnemyHit : MonoBehaviour
     public int atkDamage = 10;
     public float delayDuration = 1;
     float delayCount = 0;
-    private LevelManager levelManager;
 
     void Start()
     {
-       levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        
     }
 
     void Update()
@@ -29,7 +28,16 @@ public class EnemyHit : MonoBehaviour
             var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(atkDamage);
             delayCount = delayDuration;
-            levelManager.hurtSound();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && delayCount <= 0)
+        {
+            var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(atkDamage);
+            delayCount = delayDuration;
         }
     }
 }
