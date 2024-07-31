@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMover))]
 public class EnemyNavAi : MonoBehaviour
 {
     public enum FSMStates
@@ -40,20 +41,33 @@ public class EnemyNavAi : MonoBehaviour
     EnemyHealth enemyHealth;
     int health;
 
+    AgentLinkMover agentLinkMover;
+    bool isMidJump;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         enemyHealth = GetComponent<EnemyHealth>();
+        agentLinkMover = GetComponent<AgentLinkMover>();
 
-        isDead = false;
+
+        if (agentLinkMover == null)
+        {
+            Debug.LogError("AgentLinkMover is null");
+        }
 
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        isDead = false;
+        isMidJump = false;
 
         nextDestination = player.transform.position;
         agentSpeed = agent.speed;
@@ -86,6 +100,18 @@ public class EnemyNavAi : MonoBehaviour
                 UpdateDeadState();
                 break;
         }
+
+        if (!isMidJump && agentLinkMover.isTraversingLink)
+        {
+            anim.SetTrigger("isJumping");
+            isMidJump = agentLinkMover.isTraversingLink;
+        }
+        else if (isMidJump && !agentLinkMover.isTraversingLink)
+        {
+            anim.SetTrigger("isLanding");
+            isMidJump = agentLinkMover.isTraversingLink;
+        }
+
 
         if (health <= 0)
         {
