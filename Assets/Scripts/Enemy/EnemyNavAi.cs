@@ -32,7 +32,6 @@ public class EnemyNavAi : MonoBehaviour
     Vector3 nextDestination; 
     float distanceToPlayer;
 
-    bool isDead;
     Transform deadTransform;
 
     float agentSpeed;
@@ -66,7 +65,6 @@ public class EnemyNavAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isDead = false;
         isMidJump = false;
 
         nextDestination = player.transform.position;
@@ -198,7 +196,6 @@ public class EnemyNavAi : MonoBehaviour
     {
         // play the death animation
         Debug.Log("Enemy is dead");
-        isDead = true;
         anim.SetInteger("animState", 4);
         agent.speed = 0;
         deadTransform = gameObject.transform;

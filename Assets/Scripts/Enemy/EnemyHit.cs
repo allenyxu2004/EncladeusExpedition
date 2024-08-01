@@ -25,9 +25,12 @@ public class EnemyHit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && delayCount <= 0)
         {
-            var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(atkDamage);
-            delayCount = delayDuration;
+            if (GetComponent<EnemyHealth>().currentHealth > 0)
+            {
+                var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(atkDamage);
+                delayCount = delayDuration;
+            }
         }
     }
 
@@ -35,9 +38,12 @@ public class EnemyHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && delayCount <= 0)
         {
-            var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(atkDamage);
-            delayCount = delayDuration;
+            if (GetComponent<EnemyHealth>().currentHealth > 0)
+            {
+                var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(atkDamage);
+                delayCount = delayDuration;
+            }
         }
     }
 }
