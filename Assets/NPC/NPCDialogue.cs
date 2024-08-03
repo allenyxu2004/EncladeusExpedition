@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
@@ -32,6 +33,12 @@ public class NPCDialogue : MonoBehaviour
     GameObject[] wanderPoints;
     Vector3 nextDestination;
     int currentDestinationIndex = 0;
+
+    static int idleState = 0;
+    static int walkingState = 1;
+    static int dancingState = 2;
+    static int talkingState1 = 3;
+    static int talkingState2 = 4;
 
     float actionTimer;
 
@@ -94,8 +101,6 @@ public class NPCDialogue : MonoBehaviour
             }
         }
 
-       Debug.Log("Current State: " + currentState);
-
     }
 
     void UpdateIdleState()
@@ -123,7 +128,11 @@ public class NPCDialogue : MonoBehaviour
     // Play talking animation
     void UpdateTalkingState()
     {
+        agent.destination = transform.position;
         FaceTarget(player.transform.position);
+        int talkingState = Random.Range(talkingState1, talkingState2);
+        animator.SetInteger("animState", talkingState);
+        actionTimer = 2;        
     }
 
     void UpdateDancingState()
@@ -197,8 +206,8 @@ public class NPCDialogue : MonoBehaviour
             npcSpeak.SayDialogue(greetText, greetingsSFX);
             animator.SetTrigger("playerClose");
 
-            currentState = FSMStates.Talking;
-
+            agent.destination = transform.position;
+            actionTimer = greetingsSFX.length;
         }
     }
 
