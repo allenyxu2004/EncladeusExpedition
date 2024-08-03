@@ -17470,6 +17470,7 @@ GameObject:
   - component: {fileID: 1305258027}
   - component: {fileID: 1305258028}
   - component: {fileID: 1305258030}
+  - component: {fileID: 1305258031}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -17581,7 +17582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d1c656cfa48ee43a7bd0dc7ce6ea1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 20
+  movespeed: 10
   jumpHeight: 1.5
   gravity: 15
   airControl: 2
@@ -17642,6 +17643,20 @@ MonoBehaviour:
   healthSlider: {fileID: 36149958}
   energySlider: {fileID: 644601786}
   levelManager: {fileID: 1389500526}
+--- !u!114 &1305258031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305258021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee5be56fc9bc9e439bacc190aa53253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedDown: 50
+  player: {fileID: 1305258025}
 --- !u!1001 &1306534462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21642,9 +21657,11 @@ GameObject:
   - component: {fileID: 1536892463}
   - component: {fileID: 1536892462}
   - component: {fileID: 1536892461}
+  - component: {fileID: 1536892464}
+  - component: {fileID: 1536892465}
   m_Layer: 0
   m_Name: Ladder
-  m_TagString: Untagged
+  m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21658,8 +21675,8 @@ Transform:
   m_GameObject: {fileID: 1536892459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.24666564, y: 14, z: -4.8681526}
-  m_LocalScale: {x: 0.6666667, y: 4.32208, z: 0.7714667}
+  m_LocalPosition: {x: -0.24666564, y: 14.49, z: -4.8681526}
+  m_LocalScale: {x: 0.6666667, y: 2.8303907, z: 0.7714667}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 270369312}
@@ -21735,6 +21752,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536892459}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1536892464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536892459}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee5be56fc9bc9e439bacc190aa53253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedDown: 1e+9
+  player: {fileID: 1305258025}
+--- !u!54 &1536892465
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536892459}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1537011861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22127,7 +22185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1566341192
 Transform:
   m_ObjectHideFlags: 0
