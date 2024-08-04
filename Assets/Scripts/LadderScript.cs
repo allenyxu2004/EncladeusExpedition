@@ -25,12 +25,12 @@ public class LadderScript : MonoBehaviour
 
         if (inside == true && Input.GetKey("w"))
         {
-            player.transform.position += Vector3.up / speedDown; 
+            player.transform.position += Vector3.up * speedDown * Time.deltaTime; 
         }
 
         if (inside == true && Input.GetKey("s"))
         {
-            player.transform.position += Vector3.down / speedDown;
+            player.transform.position += Vector3.down * speedDown * Time.deltaTime;
         }
 
     }
