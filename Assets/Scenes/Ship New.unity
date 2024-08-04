@@ -5280,7 +5280,7 @@ GameObject:
   - component: {fileID: 375243937}
   - component: {fileID: 375243936}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: MeatCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5293,16 +5293,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375243934}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 673092705}
+  m_Father: {fileID: 1303596037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -45}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &375243936
@@ -9956,7 +9956,6 @@ RectTransform:
   - {fileID: 644601785}
   - {fileID: 1303596037}
   - {fileID: 1286715470}
-  - {fileID: 375243935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17808,6 +17807,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1309054871}
+  - {fileID: 375243935}
   m_Father: {fileID: 673092705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -18057,6 +18057,7 @@ MonoBehaviour:
   healthSlider: {fileID: 36149958}
   energySlider: {fileID: 644601786}
   levelManager: {fileID: 1389500526}
+  meatCountText: {fileID: 375243936}
 --- !u!114 &1305258031
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public Slider energySlider;
     public LevelManager levelManager;
+    public Text meatCountText;
 
     int meatCount = 0;
     float currentHealth;
@@ -91,6 +92,7 @@ public class PlayerHealth : MonoBehaviour
     public void addMeat()
     {
         meatCount++;
+        meatCountText.text = meatCount.ToString();
         Debug.Log("PlayerHealth: Player has " + meatCount + " meat.");
     }
 
@@ -101,6 +103,7 @@ public class PlayerHealth : MonoBehaviour
             currentEnergy += meatEnergy;
             Mathf.Clamp(currentEnergy, 0, 100);
             meatCount--;
+            meatCountText.text = meatCount.ToString();
             Debug.Log("PlayerHealth: Player has incinerated meat and now has " + meatCount + " meat.");
         }
     }
