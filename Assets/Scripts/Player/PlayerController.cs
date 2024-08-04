@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public float gravity = 9.81f;
     public float airControl = 10f;
 
-
     Vector3 input, moveDirection;
     void Start()
     {

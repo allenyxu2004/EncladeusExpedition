@@ -20,9 +20,11 @@ public class LevelManager : MonoBehaviour
 
     public static float countDown = 0.0f;
 
+    public float boostSpeedModifier = 1.5f;
+
     private GameObject player;
     private PlayerHealth playerHealth;
-
+    bool isBoosted = false;
 
     void Start()
     {
@@ -41,7 +43,14 @@ public class LevelManager : MonoBehaviour
             {
                 if (playerHealth.ShipHasEnergy())
                 {
-                    countDown -= Time.deltaTime;
+                    if (isBoosted)
+                    {
+                        countDown -= Time.deltaTime * boostSpeedModifier;
+                    }
+                    else
+                    {
+                        countDown -= Time.deltaTime;
+                    }
                 }
             }
             else
@@ -131,5 +140,15 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(droppedLoot[i]);
         }
+    }
+
+    public void BoostShip()
+    {
+        isBoosted = true;
+    }
+
+    public void SlowShip()
+    {
+        isBoosted = false;
     }
 }
