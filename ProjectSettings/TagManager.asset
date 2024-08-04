@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - DroppedLoot
   - WanderPoint
+  - Ladder
+  - NPC
   layers:
   - Default
   - TransparentFX

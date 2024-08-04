@@ -9,4 +9,6 @@ public interface Interactable
     string GetTextFromInteract();
 
     Transform GetTransform();
+
+    void SetUI(bool active);
 }

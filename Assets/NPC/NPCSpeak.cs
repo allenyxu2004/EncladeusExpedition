@@ -44,10 +44,15 @@ public class NPCSpeak : MonoBehaviour
 
     public void SayDialogue(string dialogueText, AudioClip dialogueAudio, bool withAction)
     {
-        useTalkingAction = withAction;
 
-        timer = dialogueAudio.length;
-        this.dialogueText.text = dialogueText;
-        AudioSource.PlayClipAtPoint(dialogueAudio, transform.position);
+        if (timer == 0)
+        {
+            useTalkingAction = withAction;
+
+            timer = dialogueAudio.length;
+            this.dialogueText.text = dialogueText;
+            AudioSource.PlayClipAtPoint(dialogueAudio, transform.position);
+        }
+
     }
 }

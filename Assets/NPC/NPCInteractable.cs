@@ -2,22 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCInteractable : MonoBehaviour
+public class NPCInteractable : MonoBehaviour, Interactable
 {
+    public AudioClip interactSFX;
+    public GameObject interactUI;
+
+    NPCDialogue npcDialogue;
+    NPCSpeak npcSpeak;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        npcDialogue = GetComponent<NPCDialogue>();
+        npcSpeak = GetComponent<NPCSpeak>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Interact(GameObject interacting)
     {
-        
+        npcSpeak.SayDialogue("Come back later. The shop is not ready yet.", interactSFX, true);
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    public string GetTextFromInteract()
+    {
+        return "Talk to Robot";
+    }
+
+    public void SetUI(bool active)
+    {
+        interactUI.SetActive(active);
     }
 }

@@ -75,6 +75,12 @@ public class NPCDialogue : MonoBehaviour
 
         }
 
+        if (currentState == FSMStates.Talking)
+        {
+            actionTimer = 0;
+        }
+
+
         if (actionTimer > 0)
         {
             actionTimer -= Time.deltaTime;
@@ -105,7 +111,7 @@ public class NPCDialogue : MonoBehaviour
 
     void UpdateIdleState()
     {
-            Debug.Log("Idle state");
+            //Debug.Log("Idle state");
 
             if (isPlayerClose)
             {
@@ -128,16 +134,16 @@ public class NPCDialogue : MonoBehaviour
     // Play talking animation
     void UpdateTalkingState()
     {
+        //Debug.Log("Talking state");
         agent.destination = transform.position;
         FaceTarget(player.transform.position);
         int talkingState = Random.Range(talkingState1, talkingState2);
         animator.SetInteger("animState", talkingState);
-        actionTimer = 2;        
     }
 
     void UpdateDancingState()
     {
-            Debug.Log("Dancing state");
+            //Debug.Log("Dancing state");
 
             if (isPlayerClose)
             {
@@ -158,7 +164,7 @@ public class NPCDialogue : MonoBehaviour
 
     void UpdateWalkingState()
     {
-            Debug.Log("We walking");
+            //Debug.Log("We walking");
             FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
             currentState = nextNeutralState;
 
@@ -201,12 +207,14 @@ public class NPCDialogue : MonoBehaviour
         if (other.tag == "Player")
         {
             isPlayerClose = true;
-            
+
+            agent.destination = transform.position;
+            FaceTarget(other.transform.position);
+
             string greetText = this.name + ": " + "Hello, Sailor!";
             npcSpeak.SayDialogue(greetText, greetingsSFX);
             animator.SetTrigger("playerClose");
 
-            agent.destination = transform.position;
             actionTimer = greetingsSFX.length;
         }
     }

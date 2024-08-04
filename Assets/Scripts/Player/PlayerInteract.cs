@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
 
     public float interactRange = 4.0f;
+
+    Interactable lastInteractable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +19,30 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Interactable interactable = GetPlayerInteractables();
+        if (interactable != null)
+        {
+            interactable.SetUI(true);
+            if (lastInteractable != interactable)
+            {
+                if (lastInteractable != null)
+                {
+                    lastInteractable.SetUI(false);
+                }
+                lastInteractable = interactable;
+            }
+        }
+        else
+        {
+            if (lastInteractable != null)
+            {
+                lastInteractable.SetUI(false);
+                lastInteractable = null;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Interactable interactable = GetPlayerInteractables();
             if(interactable != null)
             {
                 interactable.Interact(this.gameObject);
