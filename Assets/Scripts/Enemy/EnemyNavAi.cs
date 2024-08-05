@@ -20,6 +20,7 @@ public class EnemyNavAi : MonoBehaviour
     public float chaseDistance = Mathf.Infinity;
     public float attackDistance = 1f;
     public GameObject deadVFX;
+    public AudioClip deathSFX;
     public GameObject lootPrefab;
 
     public float updateTimeDelay = 1.0f;
@@ -229,7 +230,7 @@ public class EnemyNavAi : MonoBehaviour
     private void OnDestroy()
     {
         if (!this.gameObject.scene.isLoaded) return;
-
+        AudioSource.PlayClipAtPoint(deathSFX, gameObject.transform.position);
         Instantiate(lootPrefab, deadTransform.position, deadTransform.rotation);
         Instantiate(deadVFX, deadTransform.position, deadTransform.rotation);
     }

@@ -23,6 +23,8 @@ public class PlayerHealth : MonoBehaviour
     float currentEnergy;
     bool shipIsBoosted = false;
 
+    public AudioSource onDamageSound;
+
 
 
     void Start()
@@ -30,10 +32,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
         currentEnergy = startingEnergy;
         healthSlider.value = currentHealth;
+        //onDamageSound = GameObject.FindGameObjectWithTag("OnDamageSound").GetComponent<AudioSource>();
+        onDamageSound = GameObject.FindGameObjectWithTag("DamageSound").GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        Debug.Log(onDamageSound);
         if (shipIsBoosted)
         {
             currentEnergy -= energyUsedPerSecond * Time.deltaTime * boostEfficiencyModifier;
@@ -58,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
             Mathf.Clamp(currentHealth, 0, 100);
         }
         healthSlider.value = (float)currentHealth / (float)startingHealth;
+        onDamageSound.Play();
         Debug.Log("Current Health: " + currentHealth);
     }
 

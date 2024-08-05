@@ -1781,6 +1781,7 @@ MonoBehaviour:
   chaseDistance: Infinity
   attackDistance: 10
   deadVFX: {fileID: 5610873571322300419, guid: bab92accec0fc1d4782712a5701fa70d, type: 3}
+  deathSFX: {fileID: 8300000, guid: caaba10f9f49d864da186410e55aff14, type: 3}
   lootPrefab: {fileID: 2105861771519024218, guid: 4efb0ac1d643cf1429a024c11f364320, type: 3}
   updateTimeDelay: 1
   updateDistanceThreshold: 3
@@ -1797,7 +1798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  deadSFX: {fileID: 0}
+  deadSFX: {fileID: 8300000, guid: caaba10f9f49d864da186410e55aff14, type: 3}
   healthSlider: {fileID: 0}
   currentHealth: 0
 --- !u!114 &2391669759177937134

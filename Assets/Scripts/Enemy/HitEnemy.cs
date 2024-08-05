@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitZlorp : MonoBehaviour
 {
     public GameObject particleEffect;
+    public AudioClip deathSFX;
 
     public int scoreValue;
 
@@ -33,7 +34,7 @@ public class HitZlorp : MonoBehaviour
     void DestroyEnemy()
     {
         Instantiate(particleEffect, transform.position, transform.rotation);
-
+        AudioSource.PlayClipAtPoint(deathSFX, gameObject.transform.position);
         // Hides the game object so it can be destoryed on screen while still playing the animation
         gameObject.SetActive(false);
 

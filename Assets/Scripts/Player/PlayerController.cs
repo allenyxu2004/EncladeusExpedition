@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 10;
     public float gravity = 9.81f;
     public float airControl = 10f;
+    public AudioSource jumpAudio;
 
     Vector3 input, moveDirection;
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        jumpAudio = GameObject.FindGameObjectWithTag("JumpSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
             if(Input.GetButton("Jump"))
             {
                 moveDirection.y = Mathf.Sqrt(2 * jumpHeight * gravity);
+                jumpAudio.Play();
             }
             else
             {
