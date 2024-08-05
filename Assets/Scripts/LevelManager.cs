@@ -26,8 +26,11 @@ public class LevelManager : MonoBehaviour
     private PlayerHealth playerHealth;
     bool isBoosted = false;
 
+    string currentScene;
     void Start()
     {
+        currentScene = SceneManager.GetActiveScene().name;
+
         isGameOver = false;
         countDown = levelDuration;
         UpdateTimer();
@@ -37,30 +40,42 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (!isGameOver)
+        if (currentScene == "ShipOcean")
         {
-            if (countDown > 0 )
+            if (!isGameOver)
             {
-                if (playerHealth.ShipHasEnergy())
+                if (countDown > 0)
                 {
-                    if (isBoosted)
+                    if (playerHealth.ShipHasEnergy())
                     {
-                        countDown -= Time.deltaTime * boostSpeedModifier;
-                    }
-                    else
-                    {
-                        countDown -= Time.deltaTime;
+                        if (isBoosted)
+                        {
+                            countDown -= Time.deltaTime * boostSpeedModifier;
+                        }
+                        else
+                        {
+                            countDown -= Time.deltaTime;
+                        }
                     }
                 }
+                else
+                {
+                    countDown = 0.0f;
+                    LevelBeat();
+                }
+                UpdateTimer();
             }
-            else
+        }
+
+        else if (currentScene == "ShipDock")
+        {
+            if (PlayerHealth.publicEnergy >= 100)
             {
-                countDown = 0.0f;
                 LevelBeat();
             }
-            UpdateTimer();
         }
-       
+        
+      
     }
 
     private void OnGUI()

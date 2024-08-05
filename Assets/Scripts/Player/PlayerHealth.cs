@@ -23,13 +23,14 @@ public class PlayerHealth : MonoBehaviour
     float currentEnergy;
     bool shipIsBoosted = false;
 
-
+    public static float publicEnergy;
 
     void Start()
     {
         currentHealth = startingHealth;
         currentEnergy = startingEnergy;
         healthSlider.value = currentHealth;
+        publicEnergy = currentEnergy;
     }
 
     void Update()
@@ -42,7 +43,10 @@ public class PlayerHealth : MonoBehaviour
         {
             currentEnergy -= energyUsedPerSecond * Time.deltaTime;
         }
-        energySlider.value = currentEnergy / startingEnergy;
+        energySlider.value = currentEnergy / 100;
+
+        publicEnergy = currentEnergy;
+
     }
 
     public void TakeDamage(float damageAmount)

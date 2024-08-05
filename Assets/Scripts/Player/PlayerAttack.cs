@@ -13,6 +13,8 @@ public class PlayerAttack : MonoBehaviour
     public Color targetColor;
     Color originalColor;
 
+    AudioSource shootSource;
+
     void Start()
     {
         originalColor = reticleImage.color;
@@ -34,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(projectileSFX, transform.position);
             }
+
             Destroy(projectile, 2);
         }
 
