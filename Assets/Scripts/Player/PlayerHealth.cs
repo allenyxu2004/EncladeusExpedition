@@ -25,6 +25,10 @@ public class PlayerHealth : MonoBehaviour
 
     public static float publicEnergy;
 
+    public AudioSource collectMeatSFX;
+    public AudioSource takeDamageSFX;
+    public AudioClip incinerateSFX;
+
     void Start()
     {
         currentHealth = startingHealth;
@@ -53,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth > 0)
         {
+            takeDamageSFX.Play();
             currentHealth -= damageAmount;
             healthSlider.value = currentHealth;
         }
@@ -97,6 +102,7 @@ public class PlayerHealth : MonoBehaviour
     {
         meatCount++;
         meatCountText.text = meatCount.ToString();
+        collectMeatSFX.Play();
         Debug.Log("PlayerHealth: Player has " + meatCount + " meat.");
     }
 
@@ -105,6 +111,8 @@ public class PlayerHealth : MonoBehaviour
         if (meatCount > 0 && currentEnergy < 100)
         {
             currentEnergy += meatEnergy;
+            AudioSource.PlayClipAtPoint(incinerateSFX, transform.position);
+
             Mathf.Clamp(currentEnergy, 0, 100);
             meatCount--;
             meatCountText.text = meatCount.ToString();

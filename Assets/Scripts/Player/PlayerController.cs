@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float airControl = 10f;
 
     Vector3 input, moveDirection;
+
+    public AudioClip jumpSFX;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
             moveDirection = input;
             if(Input.GetButton("Jump"))
             {
+                AudioSource.PlayClipAtPoint(jumpSFX, transform.position);
+
                 moveDirection.y = Mathf.Sqrt(2 * jumpHeight * gravity);
             }
             else

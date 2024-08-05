@@ -11,8 +11,8 @@ public class LevelManager : MonoBehaviour
     public Text gameText;
     //public Text scoreText;
 
-    public AudioClip gameOverSFX;
-    public AudioClip gameWonSFX;
+    public AudioSource gameOverSFX;
+    public AudioSource gameWonSFX;
 
     public static bool isGameOver = false;
 
@@ -103,12 +103,12 @@ public class LevelManager : MonoBehaviour
 
             if (gameOverSFX != null)
             {
-                AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+                gameOverSFX.Play();
             }
 
             clearLoot();
 
-            Invoke("LoadCurrentLevel", 2);
+            Invoke("LoadCurrentLevel", 6);
         }
     }
 
@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
 
             if (gameWonSFX != null)
             {
-                AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
+                gameWonSFX.Play();
             }
 
             clearLoot();

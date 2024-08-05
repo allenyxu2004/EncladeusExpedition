@@ -7,13 +7,13 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public float projectileSpeed = 100.0f;
-    public AudioClip projectileSFX;
     public Image reticleImage;
     public float meleeRange = 1.0f;
     public Color targetColor;
     Color originalColor;
 
-    AudioSource shootSource;
+    public AudioSource projectileSFX;
+    public AudioClip meleeSFX;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (projectileSFX != null)
             {
-                AudioSource.PlayClipAtPoint(projectileSFX, transform.position);
+                projectileSFX.Play();
             }
 
             Destroy(projectile, 2);
@@ -42,6 +42,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
+            AudioSource.PlayClipAtPoint(meleeSFX, transform.position);
+
             Melee();
         }
     }

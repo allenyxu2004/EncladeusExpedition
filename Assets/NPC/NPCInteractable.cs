@@ -20,7 +20,7 @@ public class NPCInteractable : MonoBehaviour, Interactable
 
     public void Interact(GameObject interacting)
     {
-        npcSpeak.SayDialogue("Come back later. The shop is not ready yet.", interactSFX, true);
+        npcSpeak.SayDialogue("The ship needs energy. Put monster meat in the incinerator to charge the ship.", interactSFX, true);
     }
 
     public Transform GetTransform()
