@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     bool shipIsBoosted = false;
 
     public static float publicEnergy;
+    public AudioSource onDamageSound;
+
 
     public AudioSource collectMeatSFX;
     public AudioSource takeDamageSFX;
@@ -35,10 +37,13 @@ public class PlayerHealth : MonoBehaviour
         currentEnergy = startingEnergy;
         healthSlider.value = currentHealth;
         publicEnergy = currentEnergy;
+        //onDamageSound = GameObject.FindGameObjectWithTag("OnDamageSound").GetComponent<AudioSource>();
+        onDamageSound = GameObject.FindGameObjectWithTag("DamageSound").GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        Debug.Log(onDamageSound);
         if (shipIsBoosted)
         {
             currentEnergy -= energyUsedPerSecond * Time.deltaTime * boostEfficiencyModifier;
@@ -67,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
             Mathf.Clamp(currentHealth, 0, 100);
         }
         healthSlider.value = (float)currentHealth / (float)startingHealth;
+        onDamageSound.Play();
         Debug.Log("Current Health: " + currentHealth);
     }
 

@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     public AudioSource gameOverSFX;
     public AudioSource gameWonSFX;
 
+    public AudioSource backgroundMusic;
+
     public static bool isGameOver = false;
 
     public string nextLevel;
@@ -36,6 +38,8 @@ public class LevelManager : MonoBehaviour
         UpdateTimer();
         player = GameObject.FindWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+        backgroundMusic = GameObject.FindGameObjectWithTag("BgMusic").GetComponent<AudioSource>();
+        backgroundMusic.Play();
     }
 
     void Update()
@@ -97,6 +101,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!isGameOver)
         {
+            backgroundMusic.Stop();
             isGameOver = true;
             gameText.text = "GAME OVER!";
             gameText.gameObject.SetActive(true);

@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 8444330386302936841}
   - component: {fileID: 1524991503215787538}
   - component: {fileID: 4034317560911598225}
+  - component: {fileID: 1758425722877927643}
   m_Layer: 0
   m_Name: ZlorpEnemy
   m_TagString: Enemy
@@ -1378,6 +1379,7 @@ MonoBehaviour:
   chaseDistance: Infinity
   attackDistance: 8
   deadVFX: {fileID: 5610873571322300419, guid: bab92accec0fc1d4782712a5701fa70d, type: 3}
+  deathSFX: {fileID: 8300000, guid: caaba10f9f49d864da186410e55aff14, type: 3}
   lootPrefab: {fileID: 2105861771519024218, guid: 4efb0ac1d643cf1429a024c11f364320, type: 3}
   updateTimeDelay: 1
   updateDistanceThreshold: 3
@@ -1394,7 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 50
-  deadSFX: {fileID: 0}
+  deadSFX: {fileID: 8300000, guid: caaba10f9f49d864da186410e55aff14, type: 3}
   healthSlider: {fileID: 0}
   currentHealth: 0
 --- !u!195 &1524991503215787538
@@ -1433,6 +1435,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkDamage: 5
   delayDuration: 1
+--- !u!114 &1758425722877927643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945747324375161685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbb4b56ae3117b408d5e97f03b1c720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 2
+  m_Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isTraversingLink: 0
 --- !u!1 &6953034250470763893
 GameObject:
   m_ObjectHideFlags: 0
