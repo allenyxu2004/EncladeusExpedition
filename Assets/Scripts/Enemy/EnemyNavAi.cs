@@ -6,6 +6,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMover))]
 public class EnemyNavAi : MonoBehaviour
 {
+
+    public static int enemiesAlive = 0;
+
     public enum FSMStates
     {
         Idle,
@@ -65,6 +68,7 @@ public class EnemyNavAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemiesAlive++;
         isMidJump = false;
 
         nextDestination = player.transform.position;
@@ -232,6 +236,7 @@ public class EnemyNavAi : MonoBehaviour
 
         Instantiate(lootPrefab, deadTransform.position, deadTransform.rotation);
         Instantiate(deadVFX, deadTransform.position, deadTransform.rotation);
+        enemiesAlive--;
     }
 
     private void OnDrawGizmos()

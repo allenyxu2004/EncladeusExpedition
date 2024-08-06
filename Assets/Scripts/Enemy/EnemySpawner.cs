@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public static int maxEnemies = 20;
+
     public float spawnTime = 3f;
 
     public float xMin = -25f;
@@ -14,16 +16,28 @@ public class EnemySpawner : MonoBehaviour
     public float zMin = -25f;
     public float zMax = 25f;
 
+    bool isSpawning;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("SpawnEnemies", spawnTime, spawnTime);
+        isSpawning = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // Spawners that spawn at the same time will bypass the maxEnemies check once
+        if (!isSpawning && maxEnemies > EnemyNavAi.enemiesAlive)
+        {
+            InvokeRepeating("SpawnEnemies", spawnTime, spawnTime);
+        }
+        else
+        {
+            CancelInvoke("SpawnEnemies");
+            isSpawning = false;
+        }
     }
 
     void SpawnEnemies()

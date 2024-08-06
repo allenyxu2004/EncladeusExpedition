@@ -34,7 +34,6 @@ public class EnemyHealth : MonoBehaviour
         }
 
 
-        Debug.Log("Current health: " + currentHealth.ToString());
     }
 
     public void TakeHealth(int healthAmount)
@@ -45,7 +44,6 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.value = Mathf.Clamp(currentHealth, 0, 100);
         }
 
-        Debug.Log("Current health with loot: " + currentHealth.ToString());
     }
 
     private void OnTriggerEnter(Collider other)

@@ -18,7 +18,6 @@ public class NPCDialogue : MonoBehaviour
     }
 
     public GameObject player;
-    public Text dialogueText;
     public AudioClip greetingsSFX;
     public FSMStates currentState = FSMStates.Idle;
 
