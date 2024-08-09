@@ -13,13 +13,11 @@ public class PlayerAttack : MonoBehaviour
     Color originalColor;
 
     public AudioSource projectileSFX;
-    public AudioClip meleeSFX;
+    public AudioSource meleeSFX;
 
     void Start()
     {
         originalColor = reticleImage.color;
-        projectileSFX = GameObject.FindGameObjectWithTag("ShotSound").GetComponent<AudioSource>();
-        meleeSFX = GameObject.FindGameObjectWithTag("MeleeSound").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -44,8 +42,6 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
-            AudioSource.PlayClipAtPoint(meleeSFX, transform.position);
-
             Melee();
             meleeSFX.Play();
         }

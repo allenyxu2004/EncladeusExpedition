@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 433186}
   - component: {fileID: 3371308}
   - component: {fileID: 2312574}
+  - component: {fileID: 2435790041956742716}
   m_Layer: 0
   m_Name: AI_Env_Wall_Factory_Pipes
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2435790041956742716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.000002, y: 9.099591, z: 1.1037445}
+  m_Center: {x: -2.5000005, y: 4.2791324, z: 0.4930992}

@@ -14,11 +14,9 @@ public class PlayerController : MonoBehaviour
 
     Vector3 input, moveDirection;
 
-    public AudioClip jumpSFX;
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        jumpAudio = GameObject.FindGameObjectWithTag("JumpSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,7 +35,6 @@ public class PlayerController : MonoBehaviour
             moveDirection = input;
             if(Input.GetButton("Jump"))
             {
-                AudioSource.PlayClipAtPoint(jumpSFX, transform.position);
 
                 moveDirection.y = Mathf.Sqrt(2 * jumpHeight * gravity);
                 jumpAudio.Play();
