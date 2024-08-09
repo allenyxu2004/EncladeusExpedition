@@ -21,6 +21,10 @@ public class NPCDialogue : MonoBehaviour
     public AudioClip greetingsSFX;
     public FSMStates currentState = FSMStates.Idle;
 
+    public Transform npcEyes;
+    public float greetDistance = 10f;
+    public float fieldOfView = 45f;
+
     FSMStates[] neutralStates = { FSMStates.Idle, FSMStates.Walking, FSMStates.Dancing };
     FSMStates[] stillStates = { FSMStates.Idle, FSMStates.Dancing };
     NPCSpeak npcSpeak;
@@ -32,6 +36,8 @@ public class NPCDialogue : MonoBehaviour
     GameObject[] wanderPoints;
     Vector3 nextDestination;
     int currentDestinationIndex = 0;
+
+    bool greetedPlayer;
 
     static int idleState = 0;
     static int walkingState = 1;
@@ -57,6 +63,7 @@ public class NPCDialogue : MonoBehaviour
 
         actionTimer = 0;
         isPlayerClose = false;
+        greetedPlayer = false;
 
         FindNextPoint();
     }
@@ -64,6 +71,7 @@ public class NPCDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Vector3.Distance(transform.position, nextDestination) < 1f)
         {
             FindNextPoint();
@@ -72,6 +80,19 @@ public class NPCDialogue : MonoBehaviour
                 SetTarget(nextDestination);
             }
 
+        }
+
+        if (IsPlayerInClearFOV())
+        {
+            if (!greetedPlayer)
+            {
+                GreetPlayer();
+                greetedPlayer = true;
+            }
+        }
+        else
+        {
+            greetedPlayer = false;
         }
 
         if (currentState == FSMStates.Talking)
@@ -106,27 +127,29 @@ public class NPCDialogue : MonoBehaviour
             }
         }
 
+        Debug.DrawLine(transform.position, player.transform.position, Color.blue);
+
     }
 
     void UpdateIdleState()
     {
-            //Debug.Log("Idle state");
+        //Debug.Log("Idle state");
 
-            if (isPlayerClose)
-            {
-                FSMStates nextStillState = stillStates[Random.Range(0, stillStates.Length)];
-                currentState = nextStillState;
-            }
-            else
-            {
-                FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
-                currentState = nextNeutralState;
-            }
+        if (isPlayerClose)
+        {
+            FSMStates nextStillState = stillStates[Random.Range(0, stillStates.Length)];
+            currentState = nextStillState;
+        }
+        else
+        {
+            FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
+            currentState = nextNeutralState;
+        }
 
-            agent.destination = transform.position; 
-            animator.SetInteger("animState", 0);
-            actionTimer = Random.Range(3, 5);
-     
+        agent.destination = transform.position;
+        animator.SetInteger("animState", 0);
+        actionTimer = Random.Range(3, 5);
+
 
     }
 
@@ -142,38 +165,38 @@ public class NPCDialogue : MonoBehaviour
 
     void UpdateDancingState()
     {
-            //Debug.Log("Dancing state");
+        //Debug.Log("Dancing state");
 
-            if (isPlayerClose)
-            {
-                FSMStates nextStillState = stillStates[Random.Range(0, stillStates.Length)];
-                currentState = nextStillState;
-            }
-            else
-            {
-                FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
-                currentState = nextNeutralState;
-            }
+        if (isPlayerClose)
+        {
+            FSMStates nextStillState = stillStates[Random.Range(0, stillStates.Length)];
+            currentState = nextStillState;
+        }
+        else
+        {
+            FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
+            currentState = nextNeutralState;
+        }
 
-            agent.destination = transform.position;
-            animator.SetInteger("animState", 2);
-            actionTimer = 5;
+        agent.destination = transform.position;
+        animator.SetInteger("animState", 2);
+        actionTimer = 5;
 
     }
 
     void UpdateWalkingState()
     {
-            //Debug.Log("We walking");
-            FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
-            currentState = nextNeutralState;
+        //Debug.Log("We walking");
+        FSMStates nextNeutralState = neutralStates[Random.Range(0, neutralStates.Length)];
+        currentState = nextNeutralState;
 
-            if (agent.destination != nextDestination)
-            {
-                SetTarget(nextDestination);
-            }
+        if (agent.destination != nextDestination)
+        {
+            SetTarget(nextDestination);
+        }
 
-            actionTimer = Random.Range(8, 10);
-            animator.SetInteger("animState", 1);
+        actionTimer = Random.Range(8, 10);
+        animator.SetInteger("animState", 1);
 
 
     }
@@ -187,7 +210,7 @@ public class NPCDialogue : MonoBehaviour
 
     void SetTarget(Vector3 target)
     {
-        agent.SetDestination(target);       
+        agent.SetDestination(target);
     }
 
     void FaceTarget(Vector3 target)
@@ -200,21 +223,51 @@ public class NPCDialogue : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 20f);
     }
 
+    bool IsPlayerInClearFOV()
+    {
+        RaycastHit hit;
+        Vector3 directionToPlayer = player.transform.position - npcEyes.position;
+
+        if (Vector3.Angle(directionToPlayer, npcEyes.forward) <= fieldOfView)
+        {
+            if (Physics.Raycast(npcEyes.position, directionToPlayer, out hit, greetDistance))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Debug.Log("Player in clear FOV");
+                    return true;
+                }
+            }
+            else
+            {
+                Debug.Log("Raycast missed player");
+            }
+        }
+
+        Debug.Log("Player not in clear FOV");
+
+        return false;
+    }
+
+    void GreetPlayer()
+    {
+        agent.destination = transform.position;
+        FaceTarget(player.transform.position);
+
+        string greetText = this.name + ": " + "Hello, Sailor!";
+        npcSpeak.SayDialogue(greetText, greetingsSFX);
+        animator.SetTrigger("playerClose");
+
+        actionTimer = greetingsSFX.length;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+
             isPlayerClose = true;
-
-            agent.destination = transform.position;
-            FaceTarget(other.transform.position);
-
-            string greetText = this.name + ": " + "Hello, Sailor!";
-            npcSpeak.SayDialogue(greetText, greetingsSFX);
-            animator.SetTrigger("playerClose");
-
-            actionTimer = greetingsSFX.length;
         }
     }
 
@@ -225,4 +278,19 @@ public class NPCDialogue : MonoBehaviour
             isPlayerClose = false;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+
+
+        Vector3 frontRayPoint = npcEyes.position + (transform.forward * greetDistance);
+        Vector3 leftRayPoint = Quaternion.Euler(0, fieldOfView * .5f, 0) * frontRayPoint;
+        Vector3 rightRayPoint = Quaternion.Euler(0, -fieldOfView * .5f, 0) * frontRayPoint;
+
+        Debug.DrawLine(npcEyes.position, frontRayPoint, Color.yellow);
+        Debug.DrawLine(npcEyes.position, leftRayPoint, Color.green);
+        Debug.DrawLine(npcEyes.position, rightRayPoint, Color.green);
+
+    }
+
 }

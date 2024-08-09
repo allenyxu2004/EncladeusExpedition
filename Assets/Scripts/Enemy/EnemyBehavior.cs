@@ -23,13 +23,13 @@ public class EnemyBehavior : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Vector3.Distance(target.transform.position, transform.position) < detectionRadius)
-        {
-            Vector3 direction = (target.transform.position - transform.position).normalized;
-            rb.AddForce(direction * moveSpeed, ForceMode.Force);
-        }
+        transform.LookAt(target.transform);
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+
+       Vector3 direction = target.transform.position - transform.position;
+       transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
 
     }
 

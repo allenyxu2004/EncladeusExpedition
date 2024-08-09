@@ -38,8 +38,12 @@ public class LevelManager : MonoBehaviour
         UpdateTimer();
         player = GameObject.FindWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
-        backgroundMusic = GameObject.FindGameObjectWithTag("BgMusic").GetComponent<AudioSource>();
-        backgroundMusic.Play();
+        if (backgroundMusic == null)
+        {
+            backgroundMusic = GameObject.FindGameObjectWithTag("BgMusic").GetComponent<AudioSource>();
+            backgroundMusic.Play();
+        }
+
     }
 
     void Update()

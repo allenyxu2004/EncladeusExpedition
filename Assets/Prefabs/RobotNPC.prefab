@@ -1427,7 +1427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  dialogueText: {fileID: 0}
   greetingsSFX: {fileID: 8300000, guid: ee4f26f3bb8ed844aaccae401255b163, type: 3}
   currentState: 2
 --- !u!114 &7008875599701157450
