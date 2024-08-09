@@ -1902,7 +1902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 5582139627372773370, guid: bcccf7c522340f24c8cde81235ae3602, type: 3}
   projectileSpeed: 100
-  reticleImage: {fileID: 0}
+  reticleImage: {fileID: 748409551}
   meleeRange: 2
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   projectileSFX: {fileID: 110257726}
