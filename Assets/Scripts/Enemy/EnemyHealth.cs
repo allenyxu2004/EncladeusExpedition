@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = startingHealth;
+        healthSlider.maxValue = startingHealth;
         healthSlider.value = currentHealth;
     }
 
