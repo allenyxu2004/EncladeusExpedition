@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - AttackPoint
   - EnemySpawner
+  - WanderPoint2
   layers:
   - Default
   - TransparentFX
