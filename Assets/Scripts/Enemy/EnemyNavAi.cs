@@ -69,7 +69,6 @@ public class EnemyNavAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemiesAlive++;
         isMidJump = false;
 
         nextDestination = player.transform.position;
@@ -127,7 +126,7 @@ public class EnemyNavAi : MonoBehaviour
         // move the enemy
         // if the enemy is close to the player, switch to chase state
 
-        Debug.Log("Patrolling");
+        //Debug.Log("Patrolling");
 
         anim.SetInteger("animState", 1);
         //nextDestination = wanderPoints[currentDestinationIndex].transform.position;
@@ -150,7 +149,7 @@ public class EnemyNavAi : MonoBehaviour
     void UpdateChaseState()
     {
         // move the enemy towards the player
-        Debug.Log("Chasing");
+        //Debug.Log("Chasing");
 
         anim.SetInteger("animState", 1);
 
@@ -174,7 +173,7 @@ public class EnemyNavAi : MonoBehaviour
     void UpdateAttackState()
     {
         // attack the player
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
 
         nextDestination = player.transform.position;
 
@@ -200,7 +199,7 @@ public class EnemyNavAi : MonoBehaviour
     void UpdateDeadState()
     {
         // play the death animation
-        Debug.Log("Enemy is dead");
+        //Debug.Log("Enemy is dead");
         anim.SetInteger("animState", 4);
         agent.speed = 0;
         deadTransform = gameObject.transform;

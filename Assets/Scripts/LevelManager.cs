@@ -24,11 +24,17 @@ public class LevelManager : MonoBehaviour
 
     public float boostSpeedModifier = 1.5f;
 
+    public int maxEnemies = 20;
+    public bool spawnEnemies;
+
     private GameObject player;
     private PlayerHealth playerHealth;
     bool isBoosted = false;
 
+    GameObject[] enemySpawners;
+
     string currentScene;
+
     void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
@@ -44,6 +50,9 @@ public class LevelManager : MonoBehaviour
             backgroundMusic.Play();
         }
 
+        enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
+        SetEnemySpawning(spawnEnemies);
+
     }
 
     void Update()
@@ -56,6 +65,7 @@ public class LevelManager : MonoBehaviour
                 {
                     if (playerHealth.ShipHasEnergy())
                     {
+                        HandleEnemySpawning();
                         if (isBoosted)
                         {
                             countDown -= Time.deltaTime * boostSpeedModifier;
@@ -77,6 +87,7 @@ public class LevelManager : MonoBehaviour
 
         else if (currentScene == "ShipDock")
         {
+            HandleEnemySpawning();
             if (PlayerHealth.publicEnergy >= 100)
             {
                 LevelBeat();
@@ -174,5 +185,37 @@ public class LevelManager : MonoBehaviour
     public void SlowShip()
     {
         isBoosted = false;
+    }
+
+    void HandleEnemySpawning()
+    {
+        Debug.Log("Number of Enemies: " + GameObject.FindGameObjectsWithTag("Enemy").Length + " Max Enemies: " + maxEnemies);
+        if (spawnEnemies)
+        {
+            SetEnemySpawning(true);
+            SpawnEnemiesFromSpawners();
+        }
+        else
+        {
+            SetEnemySpawning(false);
+        }
+    }
+
+    void SpawnEnemiesFromSpawners()
+    {
+        foreach (GameObject spawner in enemySpawners)
+        {
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies)
+                spawner.GetComponent<EnemySpawner>().SpawnEnemies();
+        }
+    }
+
+    void SetEnemySpawning(bool active)
+    {
+        spawnEnemies = active;
+        foreach (GameObject spawner in enemySpawners)
+        {
+            spawner.GetComponent<EnemySpawner>().SetSpawning(active);
+        }
     }
 }

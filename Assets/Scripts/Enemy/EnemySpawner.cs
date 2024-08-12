@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public static int maxEnemies = 20;
 
     public float spawnTime = 3f;
 
@@ -17,31 +17,35 @@ public class EnemySpawner : MonoBehaviour
     public float zMax = 25f;
 
     bool isSpawning;
+    float spawnTimer;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", spawnTime, spawnTime);
         isSpawning = true;
+        spawnTimer = spawnTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Spawners that spawn at the same time will bypass the maxEnemies check once
-        if (!isSpawning && maxEnemies > EnemyNavAi.enemiesAlive)
+        if (isSpawning)
         {
-            InvokeRepeating("SpawnEnemies", spawnTime, spawnTime);
-        }
-        else
-        {
-            CancelInvoke("SpawnEnemies");
-            isSpawning = false;
+            if (spawnTimer > 0)
+            {
+                spawnTimer -= Time.deltaTime;
+            }
+            else
+            {
+                spawnTimer = 0;
+            }
         }
     }
 
-    void SpawnEnemies()
+    public void SpawnEnemies()
     {
+        if (spawnTimer > 0) return;
+
         Vector3 enemyPosition;
 
         enemyPosition.x = gameObject.transform.position.x + Random.Range(xMin, xMax);
@@ -52,5 +56,15 @@ public class EnemySpawner : MonoBehaviour
             as GameObject;
 
         spawnedEnemy.transform.parent = gameObject.transform;
+        spawnTimer = spawnTime;
+    }
+
+    public void SetSpawning(bool active)
+    {
+        isSpawning = active;
+        if (!active)
+        {
+            spawnTimer = spawnTime;
+        }
     }
 }

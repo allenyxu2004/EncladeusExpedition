@@ -12,6 +12,7 @@ TagManager:
   - Ladder
   - NPC
   - AttackPoint
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

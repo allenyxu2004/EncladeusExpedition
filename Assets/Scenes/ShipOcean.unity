@@ -7416,6 +7416,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8908972476242422819, guid: bbed233c6a18e89498c161daf0794480, type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawner
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19826,6 +19830,8 @@ MonoBehaviour:
   backgroundMusic: {fileID: 247950163}
   nextLevel: 
   boostSpeedModifier: 1.5
+  maxEnemies: 20
+  spawnEnemies: 1
 --- !u!4 &1389500527
 Transform:
   m_ObjectHideFlags: 0
