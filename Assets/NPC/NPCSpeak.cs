@@ -9,11 +9,13 @@ public class NPCSpeak : MonoBehaviour
 
     float timer;
     bool useTalkingAction;
-    NPCDialogue npcDialogue;
+    bool multiLineDialogue;
+
+    NPCBehavior npcBehavior;
 
     private void Start()
     {
-        npcDialogue = GetComponent<NPCDialogue>();
+        npcBehavior = GetComponent<NPCBehavior>();
     }
     
     // Update is called once per frame
@@ -21,8 +23,8 @@ public class NPCSpeak : MonoBehaviour
     {
         if (timer > 0)
         {
-            if (useTalkingAction && npcDialogue.currentState != NPCDialogue.FSMStates.Talking)
-                npcDialogue.currentState = NPCDialogue.FSMStates.Talking;
+            if (useTalkingAction && npcBehavior.currentState != NPCBehavior.FSMStates.Talking)
+                npcBehavior.currentState = NPCBehavior.FSMStates.Talking;
             timer -= Time.deltaTime;
         }
         else
@@ -30,8 +32,8 @@ public class NPCSpeak : MonoBehaviour
             timer = 0;
             dialogueText.text = "";
 
-            if (npcDialogue.currentState == NPCDialogue.FSMStates.Talking)
-                npcDialogue.currentState = NPCDialogue.FSMStates.Idle;
+            if (npcBehavior.currentState == NPCBehavior.FSMStates.Talking && !multiLineDialogue)
+                npcBehavior.currentState = NPCBehavior.FSMStates.Idle;
 
             useTalkingAction = false;
         }
@@ -45,7 +47,7 @@ public class NPCSpeak : MonoBehaviour
     public void SayDialogue(string dialogueText, AudioClip dialogueAudio, bool withAction)
     {
 
-        if (timer == 0)
+        if (timer <= 0)
         {
             useTalkingAction = withAction;
 
@@ -54,5 +56,33 @@ public class NPCSpeak : MonoBehaviour
             AudioSource.PlayClipAtPoint(dialogueAudio, transform.position);
         }
 
+    }
+
+    public void StopDialogue()
+    {
+        timer = 0;
+        dialogueText.text = "";
+    }
+
+    public IEnumerator SayMultiLineDialogue(string[] dialogueLines, AudioClip[] audioLines)
+    {
+        for (int i = 0; i < dialogueLines.Length; i++)
+        {
+            multiLineDialogue = true;
+            SayDialogue(dialogueLines[i], audioLines[i], true);
+            yield return new WaitForSeconds(audioLines[i].length);
+        }
+
+        multiLineDialogue = false;
+
+    }
+
+    public void SayMultiLineDialogue(Dictionary<string, AudioClip> dialogueLines)
+    {
+        foreach (KeyValuePair<string, AudioClip> line in dialogueLines)
+        {
+            SayDialogue(line.Key, line.Value, true);
+            timer = 1;
+        }
     }
 }

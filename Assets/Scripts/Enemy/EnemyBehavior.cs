@@ -235,7 +235,7 @@ public class EnemyBehavior : MonoBehaviour
         FaceTarget(nextDestination);
         anim.SetInteger("animState", 3);
 
-        EnemySpellCast();
+        EnemyProjectile();
     }
 
     void UpdateDeadState()
@@ -263,7 +263,7 @@ public class EnemyBehavior : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
     }
 
-    void EnemySpellCast()
+    void EnemyProjectile()
     {
         if (!isDead)
         {
@@ -272,14 +272,14 @@ public class EnemyBehavior : MonoBehaviour
                 float animDuration = anim.GetCurrentAnimatorStateInfo(0).length;
 
 
-                Invoke("SpellCasting", 1f);
+                Invoke("ShootProjectile", 1f);
 
                 elaspedTime = 0f;
             }
         }
     }
 
-    void SpellCasting()
+    void ShootProjectile()
     {
 
         Instantiate(projectile, tailTip.transform.position, tailTip.transform.rotation);

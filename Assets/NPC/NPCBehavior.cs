@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class NPCDialogue : MonoBehaviour
+public class NPCBehavior : MonoBehaviour
 {
     public enum FSMStates
     {
@@ -127,7 +127,6 @@ public class NPCDialogue : MonoBehaviour
             }
         }
 
-        Debug.DrawLine(transform.position, player.transform.position, Color.blue);
 
     }
 
@@ -234,17 +233,14 @@ public class NPCDialogue : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    Debug.Log("Player in clear FOV");
                     return true;
                 }
             }
             else
             {
-                Debug.Log("Raycast missed player");
             }
         }
 
-        Debug.Log("Player not in clear FOV");
 
         return false;
     }

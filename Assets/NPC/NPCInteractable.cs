@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class NPCInteractable : MonoBehaviour, Interactable
 {
-    public AudioClip interactSFX;
+    //public AudioClip interactSFX;
     public GameObject interactUI;
+    public string[] interactTextLines;
+    public AudioClip[] interactAudioLines;
 
-    NPCDialogue npcDialogue;
     NPCSpeak npcSpeak;
 
     // Start is called before the first frame update
     void Start()
     {
-        npcDialogue = GetComponent<NPCDialogue>();
         npcSpeak = GetComponent<NPCSpeak>();
     }
 
 
     public void Interact(GameObject interacting)
     {
-        npcSpeak.SayDialogue("The ship needs energy. Put monster meat in the incinerator to charge the ship.", interactSFX, true);
+        //npcSpeak.SayDialogue("The ship needs energy. Put monster meat in the incinerator to charge the ship.", interactSFX, true);
+        StartCoroutine(npcSpeak.SayMultiLineDialogue(interactTextLines, interactAudioLines));
     }
 
     public Transform GetTransform()

@@ -327,6 +327,37 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.08473638, z: -0.006854741}
     m_Extent: {x: 0.10245618, y: 0.09484571, z: 0.02874582}
   m_DirtyAABB: 0
+--- !u!1 &1320953853976745983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3390368619513489508}
+  m_Layer: 0
+  m_Name: EyesAdjusted
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3390368619513489508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320953853976745983}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.39882913, z: 0, w: 0.91702527}
+  m_LocalPosition: {x: 0, y: 0.015, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 952956455941881616}
+  m_LocalEulerAnglesHint: {x: 0, y: 47.01, z: 0}
 --- !u!1 &1410090068854126016
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +989,7 @@ Transform:
   m_Children:
   - {fileID: 4730862901520002469}
   - {fileID: 7328576372512673079}
+  - {fileID: 3390368619513489508}
   m_Father: {fileID: 8203072697885259942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2270751021766844421
@@ -1292,7 +1324,7 @@ GameObject:
   - component: {fileID: 4321837752782082831}
   - component: {fileID: 680500393606645322}
   - component: {fileID: 5721792563445541965}
-  - component: {fileID: 7008875599701157450}
+  - component: {fileID: 1614232215958469007}
   m_Layer: 0
   m_Name: RobotNPC
   m_TagString: Untagged
@@ -1429,7 +1461,10 @@ MonoBehaviour:
   player: {fileID: 0}
   greetingsSFX: {fileID: 8300000, guid: ee4f26f3bb8ed844aaccae401255b163, type: 3}
   currentState: 2
---- !u!114 &7008875599701157450
+  npcEyes: {fileID: 7328576372512673079}
+  greetDistance: 10
+  fieldOfView: 90
+--- !u!114 &1614232215958469007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1441,8 +1476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e5866956a0b3a478de49b8d97d791e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactSFX: {fileID: 8300000, guid: 38a30be0547b57446b8ca3cda83e38cb, type: 3}
   interactUI: {fileID: 6724071903046914452}
+  interactTextLines: []
+  interactAudioLines: []
 --- !u!1 &4065297614890560412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,14 +2950,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6856679076914831543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3140891006662518684}
   m_Father: {fileID: 3788702285434754991}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &6867579970735288245
 GameObject:
   m_ObjectHideFlags: 0
