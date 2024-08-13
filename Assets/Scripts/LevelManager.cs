@@ -88,7 +88,7 @@ public class LevelManager : MonoBehaviour
         else if (currentScene == "ShipDock")
         {
             HandleEnemySpawning();
-            if (PlayerHealth.publicEnergy >= 100)
+            if (PlayerHealth.publicEnergy >= 100 && PadPressed.padPressed)
             {
                 LevelBeat();
             }

@@ -22,7 +22,7 @@ public class NPCInteractable : MonoBehaviour, Interactable
     {
         //npcSpeak.SayDialogue("The ship needs energy. Put monster meat in the incinerator to charge the ship.", interactSFX, true);
         StartCoroutine(npcSpeak.SayMultiLineDialogue(interactTextLines, interactAudioLines));
-    }
+     }
 
     public Transform GetTransform()
     {
