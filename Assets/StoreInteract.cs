@@ -28,6 +28,19 @@ public class StoreInteract : MonoBehaviour, Interactable
         //StartCoroutine(npcSpeak.SayMultiLineDialogue(interactTextLines, interactAudioLines));
         defaultShopState = !defaultShopState;
         shopUI.SetActive(defaultShopState);
+        if (defaultShopState)
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
     }
 
