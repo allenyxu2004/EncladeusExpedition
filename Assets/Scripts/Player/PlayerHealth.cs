@@ -40,8 +40,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        Mathf.Clamp(currentEnergy, 0, 100);
-
         if (shipIsBoosted)
         {
             currentEnergy -= energyUsedPerSecond * Time.deltaTime * boostEfficiencyModifier;
