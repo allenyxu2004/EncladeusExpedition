@@ -9,6 +9,9 @@ public class StoreInteract : MonoBehaviour, Interactable
     public GameObject interactUI;
     bool defaultShopState = false;
 
+    public GameObject playerSFX;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class StoreInteract : MonoBehaviour, Interactable
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            playerSFX.SetActive(false);
 
         }
         else
@@ -41,6 +45,8 @@ public class StoreInteract : MonoBehaviour, Interactable
             Time.timeScale = 1;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            playerSFX.SetActive(true);
+
         }
 
     }

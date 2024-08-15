@@ -28,7 +28,7 @@ public class EnemyHit : MonoBehaviour
             if (GetComponent<EnemyHealth>().currentHealth > 0)
             {
                 var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-                playerHealth.TakeDamage(atkDamage);
+                playerHealth.TakeDamage(atkDamage + ShopPurchase.damageModifier);
                 delayCount = delayDuration;
             }
         }

@@ -13,6 +13,10 @@ public class PlayerAttack : MonoBehaviour
     Color originalColor;
 
     public AudioSource projectileSFX;
+    public AudioSource rifleSFX;
+    public AudioSource sniperSFX;
+    public AudioSource shotgunSFX;
+
     public AudioSource meleeSFX;
 
     void Start()
@@ -34,7 +38,22 @@ public class PlayerAttack : MonoBehaviour
 
             if (projectileSFX != null)
             {
-                projectileSFX.Play();
+                if (ShopPurchase.currentGun == "Shotgun")
+                {
+                    shotgunSFX.Play();
+                }
+                else if (ShopPurchase.currentGun == "Rifle")
+                {
+                    rifleSFX.Play();
+                }
+                else if (ShopPurchase.currentGun == "Sniper")
+                {
+                    sniperSFX.Play();
+                }
+                else
+                {
+                    projectileSFX.Play();
+                }
             }
 
             Destroy(projectile, 2);

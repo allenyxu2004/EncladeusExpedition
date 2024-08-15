@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     public LevelManager levelManager;
     public Text meatCountText;
 
-    int meatCount = 0;
+    public static int meatCount = 0;
     float currentHealth;
     float currentEnergy;
     bool shipIsBoosted = false;
