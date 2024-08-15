@@ -1,8 +1,8 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook2 : MonoBehaviour
 {
     // Start is called before the first frame update
     Transform playerBody;
