@@ -89,7 +89,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Initialize()
     {
-        wanderPoints = GameObject.FindGameObjectsWithTag("WanderPoint");
+        wanderPoints = GameObject.FindGameObjectsWithTag("EnemyWanderPoint");
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
 
