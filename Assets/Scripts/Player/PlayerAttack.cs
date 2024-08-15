@@ -22,7 +22,17 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (PauseMenu.isGamePaused)
+        {
+            Color tempColor = reticleImage.color;
+            tempColor.a = 0;
+            reticleImage.color = tempColor;
+        }
+        else
+        {
+            reticleImage.color = originalColor;
+        }
+        if (Input.GetButtonDown("Fire1") && !PauseMenu.isGamePaused)
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation) as GameObject;
 
@@ -55,7 +65,7 @@ public class PlayerAttack : MonoBehaviour
     void ReticleEffect()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        if (!PauseMenu.isGamePaused && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
@@ -79,7 +89,7 @@ public class PlayerAttack : MonoBehaviour
     void Melee()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, meleeRange))
+        if (!PauseMenu.isGamePaused && Physics.Raycast(transform.position, transform.forward, out hit, meleeRange))
         {
             if (hit.collider.CompareTag("Enemy"))
             {

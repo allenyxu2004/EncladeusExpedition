@@ -7,14 +7,25 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isGamePaused = false;
     public GameObject pauseMenu;
+    public GameObject[] otherMenuPanels;
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isGamePaused)
+            if (isGamePaused && pauseMenu.activeSelf)
             {
                 ResumeGame();
+            }
+            else if (isGamePaused && !pauseMenu.activeSelf)
+            {
+                pauseMenu.SetActive(true);
+                foreach (GameObject g in otherMenuPanels)
+                {
+                    g.SetActive(false);
+                }
+                
             }
             else
             {
