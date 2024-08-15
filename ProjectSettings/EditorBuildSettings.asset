@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ShipDock.unity
     guid: c00cfe9e13aa94641800ff3888336cb4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ShipOcean.unity
     guid: da54bb34652bc854bb4de6b561e0f196
+  - enabled: 0
+    path: Assets/Scenes/Main Menu.unity
+    guid: 3f06705a83bf58b42bbc685146443dec
+  - enabled: 1
+    path: Assets/Scenes/ShipBunker.unity
+    guid: e8fd25458dfc6ce49aeda2b34a15a15a
   m_configObjects: {}
