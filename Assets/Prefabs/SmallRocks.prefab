@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6472458752823246316}
   - component: {fileID: 3206821000092142642}
+  - component: {fileID: 3616435139099483686}
+  - component: {fileID: 6681155686320112590}
   m_Layer: 0
   m_Name: SmallRocks
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 384.4736, y: 65.20608, z: 848.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5325450315422166323}
   m_Father: {fileID: 0}
@@ -41,24 +43,62 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6570964151107313345}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -5.459096, y: -19.356506, z: -24.842758}
-  m_Size: 6.6318417
+  m_LocalReferencePoint: {x: -0.00002336502, y: 0.9084831, z: 0}
+  m_Size: 5.3581486
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.6
+  - screenRelativeHeight: 0.09047261
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5325450315420397523}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.043264586
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5325450315420397523}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.0006122952
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 5325450315420397523}
   m_Enabled: 1
+--- !u!65 &3616435139099483686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570964151107313345}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.55, y: 1.77, z: 3.84}
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!208 &6681155686320112590
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570964151107313345}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.705, y: 0.875, z: 1.98}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.87, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &5325450315422300083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,19 +137,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1136ce081db22d14c88c77d55b3e8366, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.21149996
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1136ce081db22d14c88c77d55b3e8366, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.009542975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1136ce081db22d14c88c77d55b3e8366, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9732443
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1136ce081db22d14c88c77d55b3e8366, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.08928739
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1136ce081db22d14c88c77d55b3e8366, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -167,7 +207,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.7567701, y: 0.59572655, z: 1.3208681}
   m_Center: {x: 0, y: 0.2978671, z: 0.0000000044385087}

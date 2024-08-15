@@ -31,6 +31,8 @@ public class LevelManager : MonoBehaviour
     private PlayerHealth playerHealth;
     bool isBoosted = false;
 
+    bool packageDelivered = false;
+
     GameObject[] enemySpawners;
 
     string currentScene;
@@ -93,7 +95,15 @@ public class LevelManager : MonoBehaviour
                 LevelBeat();
             }
         }
-        
+
+        else if (currentScene == "ShipBunker")
+        {
+            HandleEnemySpawning();
+            if (packageDelivered)
+            {
+                LevelBeat();
+            }
+        }
       
     }
 
@@ -217,5 +227,10 @@ public class LevelManager : MonoBehaviour
         {
             spawner.GetComponent<EnemySpawner>().SetSpawning(active);
         }
+    }
+
+    public void DeliverPackage()
+    {
+        packageDelivered = true;
     }
 }

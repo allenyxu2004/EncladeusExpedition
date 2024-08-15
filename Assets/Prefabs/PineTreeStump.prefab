@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3885652769813587989}
   - component: {fileID: 6616393934931300306}
+  - component: {fileID: 1997578229180150336}
+  - component: {fileID: 6955514132339188826}
   m_Layer: 0
   m_Name: PineTreeStump
   m_TagString: Untagged
@@ -41,7 +43,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934438534120538640}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -3.1887689, y: -4.9490743, z: 9.98689}
+  m_LocalReferencePoint: {x: 0.3893814, y: 0.45903587, z: 0.6588888}
   m_Size: 11.887865
   m_FadeMode: 0
   m_AnimateCrossFading: 0
@@ -51,14 +53,52 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1216264614507896532}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.26134384
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1216264614507896532}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.0077414894
     fadeTransitionWidth: 0
-    renderers: []
+    renderers:
+    - renderer: {fileID: 1216264614507896532}
   m_Enabled: 1
+--- !u!65 &1997578229180150336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934438534120538640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.48, y: 11.95, z: 11.45}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &6955514132339188826
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934438534120538640}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.46, y: 5.025, z: 5.525}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &2359810313923428069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,7 +202,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.3955293, y: 1.1504762, z: 0.72708654}
   m_Center: {x: 0.020702675, y: 0.05083403, z: 0.04029517}

@@ -93,8 +93,6 @@ public class EnemyBehavior : MonoBehaviour
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        tailTip = GameObject.FindGameObjectWithTag("AttackPoint");
-
         enemyHealth = GetComponent<EnemyHealth>();
         health = enemyHealth.currentHealth;
 
@@ -115,7 +113,7 @@ public class EnemyBehavior : MonoBehaviour
         // move the enemy
         // if the enemy is close to the player, switch to chase state
 
-        Debug.Log("Patrolling");
+        //Debug.Log("Patrolling");
 
         anim.SetInteger("animState", 1);
 
@@ -149,7 +147,7 @@ public class EnemyBehavior : MonoBehaviour
 
         if (IsPlayerInClearFOV() && distanceToPlayer <= attackDistance)
         {
-            Debug.Log("Player in sight, Attacking");
+            //Debug.Log("Player in sight, Attacking");
                 currentState = FSMStates.Attack;
         }
         else
@@ -241,7 +239,7 @@ public class EnemyBehavior : MonoBehaviour
     void UpdateDeadState()
     {
         // play the death animation
-        Debug.Log("Enemy is dead");
+        //Debug.Log("Enemy is dead");
         isDead = true;
         anim.SetInteger("animState", 4);
         deadTransform = gameObject.transform;
@@ -290,6 +288,7 @@ public class EnemyBehavior : MonoBehaviour
         //Instantiate(deadVFX, deadTransform.position, deadTransform.rotation);
     }
 
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -316,6 +315,7 @@ public class EnemyBehavior : MonoBehaviour
         Debug.DrawRay(enemyEyes.position, enemyEyes.position - player.transform.position, Color.red);
 
     }
+    */
 
     bool IsPlayerInClearFOV()
     {
