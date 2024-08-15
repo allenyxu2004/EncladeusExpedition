@@ -28,6 +28,7 @@ public class StoreInteract : MonoBehaviour, Interactable
         //StartCoroutine(npcSpeak.SayMultiLineDialogue(interactTextLines, interactAudioLines));
         defaultShopState = !defaultShopState;
         shopUI.SetActive(defaultShopState);
+
         if (defaultShopState)
         {
             Time.timeScale = 0;
