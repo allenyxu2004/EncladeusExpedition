@@ -981,7 +981,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c274c81210a878243bf55b7a13f36a66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 37703efe6423c1848baa92f59e53511a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.536
   m_Pitch: 1
@@ -20358,6 +20358,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.617
       objectReference: {fileID: 0}
+    - target: {fileID: 5868858733926040158, guid: db6a0c86b67c48442b89b7263ce25074, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33023,6 +33027,7 @@ MonoBehaviour:
   sniperSFX: {fileID: 1926039706}
   shotgunSFX: {fileID: 1602059133}
   meleeSFX: {fileID: 2011681153}
+  muzzleFlash: {fileID: 0}
 --- !u!114 &1798495995
 MonoBehaviour:
   m_ObjectHideFlags: 0
