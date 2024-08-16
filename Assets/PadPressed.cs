@@ -14,7 +14,7 @@ public class PadPressed : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Incinerator: trigger entered");
+        Debug.Log("Started Ship");
         if (other.gameObject.CompareTag("Player"))
         {
             padPressed = true;
@@ -23,7 +23,7 @@ public class PadPressed : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Incinerator: trigger exited");
+        Debug.Log("Exited Ship");
         if (other.gameObject.CompareTag("Player"))
         {
             padPressed = false;

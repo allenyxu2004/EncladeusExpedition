@@ -38,6 +38,7 @@ public class ShopPurchase : MonoBehaviour
     {
         if (PlayerHealth.meatCount >= shotgunCost)
         {
+            PlayerHealth.meatCount = PlayerHealth.meatCount - shotgunCost;
             sniper.SetActive(false);
             rifle.SetActive(false);
             shotgun.SetActive(true);
@@ -59,6 +60,8 @@ public class ShopPurchase : MonoBehaviour
     {
         if (PlayerHealth.meatCount >= sniperCost)
         {
+            PlayerHealth.meatCount = PlayerHealth.meatCount - sniperCost;
+
             sniper.SetActive(true);
             rifle.SetActive(false);
             shotgun.SetActive(false);
@@ -81,6 +84,9 @@ public class ShopPurchase : MonoBehaviour
     {
         if (PlayerHealth.meatCount >= rifleCost)
         {
+            PlayerHealth.meatCount = PlayerHealth.meatCount - rifleCost;
+
+
             sniper.SetActive(false);
             rifle.SetActive(true);
             shotgun.SetActive(false);

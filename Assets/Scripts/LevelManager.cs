@@ -88,11 +88,12 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        else if (currentScene == "ShipDock")
+        else if (currentScene == "ShipDock" || currentScene == "ShipDockBackup")
         {
             HandleEnemySpawning();
             if (PlayerHealth.publicEnergy >= 100 && PadPressed.padPressed)
             {
+                print("You Win");
                 LevelBeat();
             }
         }
