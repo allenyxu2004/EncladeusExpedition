@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
     public static float levelDuration = 40f;
     public Slider waveTimer;
-    public Text gameText;
+    public TextMeshProUGUI gameText;
     //public Text scoreText;
-
+    public Animator animator;
     public AudioSource gameOverSFX;
     public AudioSource gameWonSFX;
 
@@ -137,6 +138,7 @@ public class LevelManager : MonoBehaviour
             }
 
             clearLoot();
+            Invoke("FadeToLevel", 1);
 
             Invoke("LoadCurrentLevel", 6);
         }
@@ -156,6 +158,7 @@ public class LevelManager : MonoBehaviour
             }
 
             clearLoot();
+            Invoke("FadeToLevel", 1);
 
             if (!string.IsNullOrEmpty(nextLevel))
             {
@@ -166,6 +169,11 @@ public class LevelManager : MonoBehaviour
                 Invoke("LoadCurrentLevel", 2);
             }
         }
+    }
+
+    public void FadeToLevel()
+    {
+        animator.SetTrigger("Transition");
     }
 
     void LoadNextLevel()

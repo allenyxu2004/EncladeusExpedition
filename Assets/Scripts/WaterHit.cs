@@ -5,6 +5,8 @@ using UnityEngine;
 public class WaterHit : MonoBehaviour
 {
     public int waterDamage = 200;
+    public AudioSource waterSFX;
+    public AudioSource damageTake;
 
     void Start()
     {
@@ -21,7 +23,11 @@ public class WaterHit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var playerHealth = other.GetComponent<PlayerHealth>();
+            waterSFX.Play();
+            damageTake.mute = true;
             playerHealth.TakeDamage(waterDamage);
+
+            
         }
     }
 }
