@@ -56,6 +56,12 @@ public class LevelManager : MonoBehaviour
         enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
         SetEnemySpawning(spawnEnemies);
 
+        if (currentScene == "Tutorial")
+        {
+            playerHealth.TakeDamage(50);
+        }
+
+
     }
 
     void Update()

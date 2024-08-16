@@ -83,6 +83,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public float GetCurrentHealth() {
+        return currentHealth;
+    }
+
     public bool ShipHasEnergy()
     {
         return currentEnergy > 0;
