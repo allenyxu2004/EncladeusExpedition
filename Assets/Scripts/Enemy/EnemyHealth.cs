@@ -46,6 +46,11 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
+    public void SetSliderActive(bool active)
+    {
+        healthSlider.gameObject.SetActive(active);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Projectile"))

@@ -19,6 +19,7 @@ public class EnemyNavAi : MonoBehaviour
     public FSMStates currentState;
     public float chaseDistance = Mathf.Infinity;
     public float attackDistance = 1f;
+    public float healthBarDistance = 60f;
     public GameObject deadVFX;
     public AudioClip deathSFX;
     public GameObject lootPrefab;
@@ -81,6 +82,14 @@ public class EnemyNavAi : MonoBehaviour
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         health = enemyHealth.currentHealth;
+        if (distanceToPlayer <= healthBarDistance)
+        {
+            enemyHealth.SetSliderActive(true);
+        }
+        else
+        {
+            enemyHealth.SetSliderActive(false);
+        }
 
         switch (currentState)
         {

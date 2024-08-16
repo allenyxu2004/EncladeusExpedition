@@ -256,11 +256,14 @@ MonoBehaviour:
   attackDistance: 5
   chaseDistance: 10
   enemySpeed: 5
+  healthBarDistance: 30
   player: {fileID: 0}
   projectile: {fileID: 0}
   tailTip: {fileID: 0}
   shootRate: 10
   deadVFX: {fileID: 0}
+  deadSFX: {fileID: 0}
+  lootPrefab: {fileID: 0}
   enemyEyes: {fileID: 0}
   fieldOfView: 45
 --- !u!135 &161642738
@@ -3054,11 +3057,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3561335586812608274, guid: 3a86c9c0b18110d49b6793f7c3e2e3f5, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3561335586812608274, guid: 3a86c9c0b18110d49b6793f7c3e2e3f5, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6845561030253726755, guid: 3a86c9c0b18110d49b6793f7c3e2e3f5, type: 3}
       propertyPath: m_Name
@@ -3066,7 +3069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6845561030253726755, guid: 3a86c9c0b18110d49b6793f7c3e2e3f5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7297241715186045223, guid: 3a86c9c0b18110d49b6793f7c3e2e3f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6324,6 +6327,7 @@ MonoBehaviour:
   npcEyes: {fileID: 0}
   greetDistance: 10
   fieldOfView: 45
+  wanderPointTag: WanderPoint
 --- !u!1 &2829371686361033840
 GameObject:
   m_ObjectHideFlags: 0

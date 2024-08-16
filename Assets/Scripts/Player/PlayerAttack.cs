@@ -19,6 +19,8 @@ public class PlayerAttack : MonoBehaviour
 
     public AudioSource meleeSFX;
 
+    public ParticleSystem muzzleFlash;
+
     Animator animator;
 
     void Start()
@@ -29,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        if (LevelManager.isGameOver) return;
+
         if (Input.GetButtonDown("Fire1"))
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation) as GameObject;
@@ -57,6 +61,8 @@ public class PlayerAttack : MonoBehaviour
                 {
                     projectileSFX.Play();
                 }
+
+                muzzleFlash.Play();
             }
 
             Destroy(projectile, 2);

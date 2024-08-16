@@ -19,6 +19,7 @@ public class FlyingRangedEnemyBehavior : MonoBehaviour
     public float attackDistance = 5f;
     public float chaseDistance = 10f;
     public float enemySpeed = 5f;
+    public float healthBarDistance = 60f;
     public GameObject player;
     public GameObject projectile;
     public GameObject tailTip;
@@ -61,6 +62,14 @@ public class FlyingRangedEnemyBehavior : MonoBehaviour
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         health = enemyHealth.currentHealth;
+        if (distanceToPlayer <= healthBarDistance)
+        {
+            enemyHealth.SetSliderActive(true);
+        }
+        else
+        {
+            enemyHealth.SetSliderActive(false);
+        }
 
         switch (currentState)
         {

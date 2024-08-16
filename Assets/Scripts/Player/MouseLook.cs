@@ -19,6 +19,8 @@ public class MouseLook2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.isGameOver) return;
+
         // Universial mouse controls with sens applied
         float moveX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float moveY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

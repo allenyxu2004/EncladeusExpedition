@@ -134,6 +134,7 @@ MonoBehaviour:
   attackDistance: 30
   chaseDistance: 50
   enemySpeed: 5
+  healthBarDistance: 60
   player: {fileID: 0}
   projectile: {fileID: 8691421363534589178, guid: 8c97ff160ba1fc041aed077697385d87, type: 3}
   tailTip: {fileID: 4103608278312963350}

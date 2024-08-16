@@ -19,6 +19,8 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.isGameOver) return;
+
         Interactable interactable = GetPlayerInteractables();
         if (interactable != null)
         {
