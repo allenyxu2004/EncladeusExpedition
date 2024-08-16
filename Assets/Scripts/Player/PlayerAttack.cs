@@ -19,9 +19,12 @@ public class PlayerAttack : MonoBehaviour
 
     public AudioSource meleeSFX;
 
+    Animator animator;
+
     void Start()
     {
         originalColor = reticleImage.color;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -97,6 +100,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Melee()
     {
+        animator.SetTrigger("meleeAttack");
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, meleeRange))
         {
