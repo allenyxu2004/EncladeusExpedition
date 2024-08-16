@@ -98,6 +98,8 @@ public class PlayerHealth : MonoBehaviour
 
     void PlayerDies()
     {
+        PlayerPrefs.SetInt("Gun", 0);
+        meatCount = 0;
         Debug.Log("Player is dead...");
         if (deadSFX != null)
         {

@@ -46,7 +46,10 @@ public class LevelManager : MonoBehaviour
         countDown = levelDuration;
         UpdateTimer();
         player = GameObject.FindWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
+        if (player != null )
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
         if (backgroundMusic == null)
         {
             backgroundMusic = GameObject.FindGameObjectWithTag("BgMusic").GetComponent<AudioSource>();

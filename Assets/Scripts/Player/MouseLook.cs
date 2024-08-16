@@ -7,11 +7,12 @@ public class MouseLook2 : MonoBehaviour
     // Start is called before the first frame update
     Transform playerBody;
     public float mouseSensitivity = 200;
+    float sensMultiplier;
+    float currentSensitivity;
     float pitch = 0;
     void Start()
     {
         playerBody = transform.parent.transform;
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -21,9 +22,12 @@ public class MouseLook2 : MonoBehaviour
     {
         if (LevelManager.isGameOver) return;
 
+        sensMultiplier = PlayerPrefs.GetFloat("Sensitivity");
+        currentSensitivity = mouseSensitivity * sensMultiplier;
+
         // Universial mouse controls with sens applied
-        float moveX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float moveY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float moveX = Input.GetAxis("Mouse X") * currentSensitivity * Time.deltaTime;
+        float moveY = Input.GetAxis("Mouse Y") * currentSensitivity * Time.deltaTime;
 
         // Rotate the player body (YAW)
         playerBody.Rotate(Vector3.up * moveX);

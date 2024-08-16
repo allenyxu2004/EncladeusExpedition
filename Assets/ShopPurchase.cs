@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class ShopPurchase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject sniper;
-    public int sniperDMG;
-    public int sniperCost = 0;
+    // PlayerPrefs Gun value 0
+    public GameObject pistol;
 
+    // PlayerPrefs Gun value 1
     public GameObject rifle;
     public int rifleDMG;
-    public int rifleCost = 0;
+    public int rifleCost = 5;
 
+    // PlayerPrefs Gun value 2
     public GameObject shotgun;
     public int shotgunDMG;
-    public int shotgunCost = 0;
+    public int shotgunCost = 10;
 
-    public GameObject pistol;
+    // PlayerPrefs Gun value 3
+    public GameObject sniper;
+    public int sniperDMG;
+    public int sniperCost = 15;
 
     public AudioSource purchaseSFX;
     public AudioSource cantBuySFX;
 
-    public static string currentGun = "Pistol";
+    //public static string currentGun = "Pistol";
     public static int damageModifier = 0;
 
     void Start()
@@ -32,20 +35,44 @@ public class ShopPurchase : MonoBehaviour
         //shotgun = GameObject.FindGameObjectWithTag("Shotgun");
         //pistol = GameObject.FindGameObjectWithTag("Pistol");
 
+        if (!PlayerPrefs.HasKey("Gun"))
+        {
+            PlayerPrefs.SetInt("Gun", 0);
+        }
+
+        SetGun();
+    }
+
+    void PurchaseRifle()
+    {
+        if (PlayerHealth.meatCount >= rifleCost)
+        {
+            PlayerPrefs.SetInt("Gun", 1);
+            PlayerHealth.meatCount = PlayerHealth.meatCount - rifleCost;
+
+            SetGun();
+
+            //currentGun = "Rifle";
+            print("Rifle Purchased");
+            purchaseSFX.Play();
+            damageModifier = rifleDMG;
+        }
+        else
+        {
+            cantBuySFX.Play();
+        }
     }
 
     void PurchaseShotgun()
     {
         if (PlayerHealth.meatCount >= shotgunCost)
         {
+            PlayerPrefs.SetInt("Gun", 2);
             PlayerHealth.meatCount = PlayerHealth.meatCount - shotgunCost;
-            sniper.SetActive(false);
-            rifle.SetActive(false);
-            shotgun.SetActive(true);
-            pistol.SetActive(false);
+            
+            SetGun();
 
-            currentGun = "Shotgun";
-            print("Switched");
+            print("Shotgun Purchased");
             purchaseSFX.Play();
             damageModifier = shotgunDMG;
         }
@@ -60,15 +87,12 @@ public class ShopPurchase : MonoBehaviour
     {
         if (PlayerHealth.meatCount >= sniperCost)
         {
+            PlayerPrefs.SetInt("Gun", 3);
             PlayerHealth.meatCount = PlayerHealth.meatCount - sniperCost;
 
-            sniper.SetActive(true);
-            rifle.SetActive(false);
-            shotgun.SetActive(false);
-            pistol.SetActive(false);
+            SetGun();
 
-            currentGun = "Sniper";
-            print("Switched");
+            print("Sniper Purchased");
             purchaseSFX.Play();
             damageModifier = sniperDMG;
         }
@@ -80,30 +104,50 @@ public class ShopPurchase : MonoBehaviour
 
     }
 
-    void PurchaseRifle()
+    void SetGun()
     {
-        if (PlayerHealth.meatCount >= rifleCost)
+        int gun = PlayerPrefs.GetInt("Gun");
+        switch (gun)
         {
-            PlayerHealth.meatCount = PlayerHealth.meatCount - rifleCost;
+            // Pistol
+            case 0:
+                pistol.SetActive(true);
+                rifle.SetActive(false);
+                shotgun.SetActive(false);
+                sniper.SetActive(false);
+                return;
+            
+            // Rifle
+            case 1:
+                pistol.SetActive(false);
+                rifle.SetActive(true);
+                shotgun.SetActive(false);
+                sniper.SetActive(false);
+                return;
 
+            // Shotgun
+            case 2:
+                pistol.SetActive(false);
+                rifle.SetActive(false);
+                shotgun.SetActive(true);
+                sniper.SetActive(false);
+                return;
 
-            sniper.SetActive(false);
-            rifle.SetActive(true);
-            shotgun.SetActive(false);
-            pistol.SetActive(false);
+            // Sniper
+            case 3:
+                pistol.SetActive(false);
+                rifle.SetActive(false);
+                shotgun.SetActive(false);
+                sniper.SetActive(true);
+                return;
 
-            currentGun = "Rifle";
-            print("Switched");
-            purchaseSFX.Play();
-            damageModifier = rifleDMG;
+            // Gun not set
+            default:
+                pistol.SetActive(true);
+                rifle.SetActive(false);
+                shotgun.SetActive(false);
+                sniper.SetActive(false);
+                return;
         }
-        else
-        {
-            cantBuySFX.Play();
-        }
-
-
-
     }
-
 }

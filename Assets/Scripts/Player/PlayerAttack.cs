@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     public float meleeRange = 1.0f;
     public Color targetColor;
     Color originalColor;
+    Color currentColor;
 
     public AudioSource projectileSFX;
     public AudioSource rifleSFX;
@@ -33,7 +34,18 @@ public class PlayerAttack : MonoBehaviour
     {
         if (LevelManager.isGameOver) return;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (PauseMenu.isGamePaused)
+        {
+            Color color = reticleImage.color;
+            color.a = 0;
+            reticleImage.color = color;
+        }
+        else
+        {
+            reticleImage.color = currentColor;
+        }
+
+        if (!PauseMenu.isGamePaused && Input.GetButtonDown("Fire1"))
         {
             GameObject projectile = Instantiate(projectilePrefab, transform.position + transform.forward, transform.rotation) as GameObject;
 
@@ -45,15 +57,18 @@ public class PlayerAttack : MonoBehaviour
 
             if (projectileSFX != null)
             {
-                if (ShopPurchase.currentGun == "Shotgun")
-                {
-                    shotgunSFX.Play();
-                }
-                else if (ShopPurchase.currentGun == "Rifle")
+                // Rifle
+                if (PlayerPrefs.GetInt("Gun") == 1)
                 {
                     rifleSFX.Play();
                 }
-                else if (ShopPurchase.currentGun == "Sniper")
+                // Shotgun
+                else if (PlayerPrefs.GetInt("Gun") == 2)
+                {
+                    shotgunSFX.Play();
+                }
+                // Sniper
+                else if (PlayerPrefs.GetInt("Gun") == 3)
                 {
                     sniperSFX.Play();
                 }
@@ -68,7 +83,7 @@ public class PlayerAttack : MonoBehaviour
             Destroy(projectile, 2);
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (!PauseMenu.isGamePaused && Input.GetButtonDown("Fire2"))
         {
             Melee();
             meleeSFX.Play();
@@ -83,11 +98,12 @@ public class PlayerAttack : MonoBehaviour
     void ReticleEffect()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        if (!PauseMenu.isGamePaused && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                reticleImage.color = Color.Lerp(reticleImage.color, targetColor, Time.deltaTime * 2);
+                currentColor = Color.Lerp(reticleImage.color, targetColor, Time.deltaTime * 2);
+                reticleImage.color = currentColor;
                 reticleImage.transform.localScale =
                     Vector3.Lerp(reticleImage.transform.localScale,
                     new Vector3(0.7f, 0.7f, 1),
@@ -95,7 +111,8 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                reticleImage.color = Color.Lerp(reticleImage.color, originalColor, Time.deltaTime * 2);
+                currentColor = Color.Lerp(reticleImage.color, originalColor, Time.deltaTime * 2);
+                reticleImage.color = currentColor;
                 reticleImage.transform.localScale =
                     Vector3.Lerp(reticleImage.transform.localScale,
                     Vector3.one,
@@ -108,11 +125,11 @@ public class PlayerAttack : MonoBehaviour
     {
         animator.SetTrigger("meleeAttack");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, meleeRange))
+        if (!PauseMenu.isGamePaused && Physics.Raycast(transform.position, transform.forward, out hit, meleeRange))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                hit.collider.GetComponent<EnemyHealth>().TakeDamage(1000);
+                hit.collider.GetComponent<EnemyHealth>().TakeDamage(100);
             }
         }
     }
