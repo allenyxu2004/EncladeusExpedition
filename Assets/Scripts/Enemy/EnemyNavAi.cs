@@ -6,9 +6,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMover))]
 public class EnemyNavAi : MonoBehaviour
 {
-
-    public static int enemiesAlive = 0;
-
     public enum FSMStates
     {
         Idle,
@@ -236,7 +233,6 @@ public class EnemyNavAi : MonoBehaviour
         AudioSource.PlayClipAtPoint(deathSFX, gameObject.transform.position);
         Instantiate(lootPrefab, deadTransform.position, deadTransform.rotation);
         Instantiate(deadVFX, deadTransform.position, deadTransform.rotation);
-        enemiesAlive--;
     }
 
     private void OnDrawGizmos()

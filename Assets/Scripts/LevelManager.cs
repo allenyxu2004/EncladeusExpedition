@@ -214,7 +214,7 @@ public class LevelManager : MonoBehaviour
 
     void HandleEnemySpawning()
     {
-        Debug.Log("Number of Enemies: " + GameObject.FindGameObjectsWithTag("Enemy").Length + " Max Enemies: " + maxEnemies);
+        //Debug.Log("Number of Enemies: " + GameObject.FindGameObjectsWithTag("Enemy").Length + " Max Enemies: " + maxEnemies);
         if (spawnEnemies)
         {
             SetEnemySpawning(true);

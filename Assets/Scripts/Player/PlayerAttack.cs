@@ -106,7 +106,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                Destroy(hit.collider.gameObject);
+                hit.collider.GetComponent<EnemyHealth>().TakeDamage(1000);
             }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemyBehavior : MonoBehaviour
+public class TrackingEnemyBehavior : MonoBehaviour
 {
     public GameObject target;
     public float moveSpeed = 5f;

@@ -24,6 +24,7 @@ public class NPCBehavior : MonoBehaviour
     public Transform npcEyes;
     public float greetDistance = 10f;
     public float fieldOfView = 45f;
+    public string wanderPointTag = "WanderPoint";
 
     FSMStates[] neutralStates = { FSMStates.Idle, FSMStates.Walking, FSMStates.Dancing };
     FSMStates[] stillStates = { FSMStates.Idle, FSMStates.Dancing };
@@ -47,6 +48,8 @@ public class NPCBehavior : MonoBehaviour
 
     float actionTimer;
 
+    float agentOriginalSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,11 +62,13 @@ public class NPCBehavior : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
-        wanderPoints = GameObject.FindGameObjectsWithTag("WanderPoint");
+        wanderPoints = GameObject.FindGameObjectsWithTag(wanderPointTag);
 
         actionTimer = 0;
         isPlayerClose = false;
         greetedPlayer = false;
+
+        agentOriginalSpeed = agent.speed;
 
         FindNextPoint();
     }
@@ -82,7 +87,7 @@ public class NPCBehavior : MonoBehaviour
 
         }
 
-        if (IsPlayerInClearFOV())
+        if (IsPlayerInClearFOV() && currentState != FSMStates.Talking)
         {
             if (!greetedPlayer)
             {
@@ -145,7 +150,7 @@ public class NPCBehavior : MonoBehaviour
             currentState = nextNeutralState;
         }
 
-        agent.destination = transform.position;
+        agent.speed = 0;
         animator.SetInteger("animState", 0);
         actionTimer = Random.Range(3, 5);
 
@@ -156,7 +161,7 @@ public class NPCBehavior : MonoBehaviour
     void UpdateTalkingState()
     {
         //Debug.Log("Talking state");
-        agent.destination = transform.position;
+        agent.speed = 0;
         FaceTarget(player.transform.position);
         int talkingState = Random.Range(talkingState1, talkingState2);
         animator.SetInteger("animState", talkingState);
@@ -177,7 +182,7 @@ public class NPCBehavior : MonoBehaviour
             currentState = nextNeutralState;
         }
 
-        agent.destination = transform.position;
+        agent.speed = 0;
         animator.SetInteger("animState", 2);
         actionTimer = 5;
 
@@ -194,6 +199,7 @@ public class NPCBehavior : MonoBehaviour
             SetTarget(nextDestination);
         }
 
+        agent.speed = agentOriginalSpeed;   
         actionTimer = Random.Range(8, 10);
         animator.SetInteger("animState", 1);
 
@@ -247,7 +253,7 @@ public class NPCBehavior : MonoBehaviour
 
     void GreetPlayer()
     {
-        agent.destination = transform.position;
+        agent.speed = 0;
         FaceTarget(player.transform.position);
 
         string greetText = this.name + ": " + "Hello, Sailor!";

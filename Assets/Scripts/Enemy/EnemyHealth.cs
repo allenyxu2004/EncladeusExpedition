@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
-    public AudioClip deadSFX;
     public Slider healthSlider;
     public int currentHealth;
     

@@ -138,7 +138,9 @@ MonoBehaviour:
   projectile: {fileID: 8691421363534589178, guid: 8c97ff160ba1fc041aed077697385d87, type: 3}
   tailTip: {fileID: 4103608278312963350}
   shootRate: 2
-  deadVFX: {fileID: 0}
+  deadVFX: {fileID: 5610873571322300419, guid: bab92accec0fc1d4782712a5701fa70d, type: 3}
+  deadSFX: {fileID: 8300000, guid: 2b7e86f518881ce4ca10fe3dfde104d6, type: 3}
+  lootPrefab: {fileID: 2105861771519024218, guid: 4efb0ac1d643cf1429a024c11f364320, type: 3}
   enemyEyes: {fileID: 3120775649050804130}
   fieldOfView: 120
 --- !u!114 &3538359790797173263
@@ -153,8 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea13579e1802c840b92f07c03c7c271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 10
-  deadSFX: {fileID: 0}
+  startingHealth: 30
   healthSlider: {fileID: 0}
   currentHealth: 0
 --- !u!1 &1490626208283355296
