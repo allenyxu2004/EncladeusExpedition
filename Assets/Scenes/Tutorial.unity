@@ -35068,7 +35068,11 @@ PrefabInstance:
       objectReference: {fileID: 1879663283}
     - target: {fileID: 5721792563445541965, guid: 7e2cdf6c87534114085068e0ca595fcf, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721792563445541965, guid: 7e2cdf6c87534114085068e0ca595fcf, type: 3}
+      propertyPath: wanderPointTag
+      value: WanderPoint2
       objectReference: {fileID: 0}
     - target: {fileID: 6113354916137193205, guid: 7e2cdf6c87534114085068e0ca595fcf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35555,7 +35559,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879663282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea9d57597129fe84089cde94fdfedf2b, type: 3}
   m_Name: 

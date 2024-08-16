@@ -7,7 +7,7 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    public static float levelDuration = 40f;
+    public static float levelDuration = 100f;
     public Slider waveTimer;
     public TextMeshProUGUI gameText;
     //public Text scoreText;
@@ -60,6 +60,14 @@ public class LevelManager : MonoBehaviour
         {
             playerHealth.TakeDamage(50);
         }
+        if (currentScene == "ShipDockBackup" || currentScene == "ShipDock")
+        {
+            Invoke("SpawnEnemiesTrue", 20);
+        }
+        if (currentScene == "ShipOcean")
+        {
+            Invoke("SpawnEnemiesTrue", 15);
+        }
 
 
     }
@@ -94,6 +102,7 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+
         else if (currentScene == "ShipDock" || currentScene == "ShipDockBackup")
         {
             HandleEnemySpawning();
@@ -114,6 +123,13 @@ public class LevelManager : MonoBehaviour
         }
       
     }
+
+
+    void SpawnEnemiesTrue()
+    {
+        SetEnemySpawning(true);
+    }
+
 
     private void OnGUI()
     {
@@ -169,7 +185,7 @@ public class LevelManager : MonoBehaviour
 
             if (!string.IsNullOrEmpty(nextLevel))
             {
-                Invoke("LoadNextLevel", 2);
+                Invoke("LoadNextLevel", 5);
             }
             else
             {

@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth > 0)
         {
-            currentHealth -= damageAmount;
+            currentHealth -= damageAmount + ShopPurchase.damageModifier;
             currentHealth = Mathf.Clamp(currentHealth, 0, 100);
             healthSlider.value = currentHealth;
         }

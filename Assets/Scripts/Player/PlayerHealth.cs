@@ -40,6 +40,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        meatCountText.text = meatCount.ToString();
+
         if (shipIsBoosted)
         {
             currentEnergy -= energyUsedPerSecond * Time.deltaTime * boostEfficiencyModifier;
@@ -48,6 +50,8 @@ public class PlayerHealth : MonoBehaviour
         {
             currentEnergy -= energyUsedPerSecond * Time.deltaTime;
         }
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, 100);
+        print(currentEnergy);
         energySlider.value = currentEnergy / 100;
 
         publicEnergy = currentEnergy;
