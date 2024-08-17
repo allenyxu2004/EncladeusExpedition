@@ -26,7 +26,7 @@ public class ShopPurchase : MonoBehaviour
     public AudioSource cantBuySFX;
 
     //public static string currentGun = "Pistol";
-    public static int damageModifier = 0;
+    public static int damageModifier;
 
     void Start()
     {
@@ -115,6 +115,7 @@ public class ShopPurchase : MonoBehaviour
                 rifle.SetActive(false);
                 shotgun.SetActive(false);
                 sniper.SetActive(false);
+                damageModifier = 0;
                 return;
             
             // Rifle
@@ -123,6 +124,7 @@ public class ShopPurchase : MonoBehaviour
                 rifle.SetActive(true);
                 shotgun.SetActive(false);
                 sniper.SetActive(false);
+                damageModifier = rifleDMG;
                 return;
 
             // Shotgun
@@ -131,6 +133,7 @@ public class ShopPurchase : MonoBehaviour
                 rifle.SetActive(false);
                 shotgun.SetActive(true);
                 sniper.SetActive(false);
+                damageModifier = shotgunDMG;
                 return;
 
             // Sniper
@@ -139,6 +142,7 @@ public class ShopPurchase : MonoBehaviour
                 rifle.SetActive(false);
                 shotgun.SetActive(false);
                 sniper.SetActive(true);
+                damageModifier = sniperDMG;
                 return;
 
             // Gun not set
@@ -147,6 +151,7 @@ public class ShopPurchase : MonoBehaviour
                 rifle.SetActive(false);
                 shotgun.SetActive(false);
                 sniper.SetActive(false);
+                damageModifier = 0;
                 return;
         }
     }

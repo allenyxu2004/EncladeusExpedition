@@ -7,7 +7,7 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    public static float levelDuration = 100f;
+    public static float levelDuration = 80f;
     public Slider waveTimer;
     public TextMeshProUGUI gameText;
     //public Text scoreText;
@@ -58,6 +58,12 @@ public class LevelManager : MonoBehaviour
 
         enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
         SetEnemySpawning(spawnEnemies);
+
+        if (currentScene == "Main Menu")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         if (currentScene == "Tutorial")
         {
