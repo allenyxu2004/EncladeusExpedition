@@ -60,19 +60,23 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (currentHealth > 0)
+        if (!LevelManager.isGameOver)
         {
-            takeDamageSFX.Play();
-            currentHealth -= damageAmount;
-            healthSlider.value = currentHealth;
+            if (currentHealth > 0)
+            {
+                takeDamageSFX.Play();
+                currentHealth -= damageAmount;
+                healthSlider.value = currentHealth;
+            }
+            if (currentHealth <= 0)
+            {
+                PlayerDies();
+                Mathf.Clamp(currentHealth, 0, 100);
+            }
+            healthSlider.value = (float)currentHealth / (float)startingHealth;
+            Debug.Log("Current Health: " + currentHealth);
         }
-        if (currentHealth <= 0)
-        {
-            PlayerDies();
-            Mathf.Clamp(currentHealth, 0, 100);
-        }
-        healthSlider.value = (float)currentHealth / (float)startingHealth;
-        Debug.Log("Current Health: " + currentHealth);
+       
     }
 
     public void HealPlayer(float healAmount)
